@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_cKlZAOxBEe6Epv5EoIK4gw" name="NewModel">
+    <packagedElement xmi:type="uml:Component" xmi:id="_Oan-MOxDEe6Epv5EoIK4gw" name="Llamado"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_Rf8wYOxDEe6Epv5EoIK4gw" name="Gestión de cola">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_udKtoOxDEe6Epv5EoIK4gw" name="Gestión de colaPort" type="_Rf8wYOxDEe6Epv5EoIK4gw"/>
+      <ownedConnector xmi:id="_udKGkOxDEe6Epv5EoIK4gw" name="Registro_Registro_connector">
+        <end xmi:id="_udKtoexDEe6Epv5EoIK4gw" role="_udKtoOxDEe6Epv5EoIK4gw"/>
+        <end xmi:id="_udKto-xDEe6Epv5EoIK4gw" role="_udKtouxDEe6Epv5EoIK4gw"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="_l90JoOxtEe6Epv5EoIK4gw" name="Registro_Registro_connector">
+        <end xmi:id="_l90JoextEe6Epv5EoIK4gw" role="_udKtoOxDEe6Epv5EoIK4gw"/>
+        <end xmi:id="_l90JouxtEe6Epv5EoIK4gw" role="_udKtouxDEe6Epv5EoIK4gw"/>
+      </ownedConnector>
+      <interfaceRealization xmi:id="_sb-R8OxDEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw _udKGkOxDEe6Epv5EoIK4gw _l90JoOxtEe6Epv5EoIK4gw" supplier="_lSft0OxDEe6Epv5EoIK4gw" contract="_lSft0OxDEe6Epv5EoIK4gw"/>
+      <interfaceRealization xmi:id="_3uL-gOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw" supplier="_-2PbwOxtEe6Epv5EoIK4gw" contract="_-2PbwOxtEe6Epv5EoIK4gw"/>
+      <interfaceRealization xmi:id="_5XuIIOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw" supplier="_9VpLsOxtEe6Epv5EoIK4gw" contract="_9VpLsOxtEe6Epv5EoIK4gw"/>
+      <interfaceRealization xmi:id="_93ZYcOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw" supplier="__XDp0OxtEe6Epv5EoIK4gw" contract="__XDp0OxtEe6Epv5EoIK4gw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_VY70IOxDEe6Epv5EoIK4gw" name="Registro">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_udKtouxDEe6Epv5EoIK4gw" name="RegistroPort" type="_VY70IOxDEe6Epv5EoIK4gw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_ZZL9gOxDEe6Epv5EoIK4gw" name="Notificación"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_cHO4IOxDEe6Epv5EoIK4gw" name="Monitoreo"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_lSft0OxDEe6Epv5EoIK4gw" name="Registro"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_r_bf4OxDEe6Epv5EoIK4gw" client="_VY70IOxDEe6Epv5EoIK4gw _udKGkOxDEe6Epv5EoIK4gw _l90JoOxtEe6Epv5EoIK4gw" supplier="_lSft0OxDEe6Epv5EoIK4gw"/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_hHf5wOxTEe6Epv5EoIK4gw" name="Tablet">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_j36y8OxTEe6Epv5EoIK4gw" name="Android">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_Y41ZwOxUEe6Epv5EoIK4gw" name="Turnero"/>
+      </nestedClassifier>
+      <nestedNode xmi:id="_1ayXUOxUEe6Epv5EoIK4gw" name="Node1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Device" xmi:id="_5cocIOxUEe6Epv5EoIK4gw" name="Servidor">
+      <nestedClassifier xmi:type="uml:Node" xmi:id="_EhIrYOxVEe6Epv5EoIK4gw" name="Node1"/>
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_OLc9IOxsEe6Epv5EoIK4gw" name="Windows Server">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_YlnO4OxsEe6Epv5EoIK4gw" name="Turnero"/>
+      </nestedNode>
+      <nestedNode xmi:id="_NskzUOxtEe6Epv5EoIK4gw" name="Node2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Device" xmi:id="_v0nsIOxsEe6Epv5EoIK4gw" name="Estación de trabajo">
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_4ujhQOxsEe6Epv5EoIK4gw" name="Windows 10 Pro">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_HgOl0OxtEe6Epv5EoIK4gw" name="Turnero"/>
+      </nestedNode>
+      <nestedNode xmi:id="_PF7L4OxtEe6Epv5EoIK4gw" name="Node1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_RxBgMOxtEe6Epv5EoIK4gw" memberEnd="_RxBgMextEe6Epv5EoIK4gw _RxCuUuxtEe6Epv5EoIK4gw" navigableOwnedEnd="_RxBgMextEe6Epv5EoIK4gw _RxCuUuxtEe6Epv5EoIK4gw">
+      <ownedEnd xmi:id="_RxBgMextEe6Epv5EoIK4gw" name="node1s" type="_1ayXUOxUEe6Epv5EoIK4gw" association="_RxBgMOxtEe6Epv5EoIK4gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RxCuUOxtEe6Epv5EoIK4gw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RxCuUextEe6Epv5EoIK4gw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_RxCuUuxtEe6Epv5EoIK4gw" name="node1s" type="_EhIrYOxVEe6Epv5EoIK4gw" association="_RxBgMOxtEe6Epv5EoIK4gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RxCuU-xtEe6Epv5EoIK4gw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RxCuVOxtEe6Epv5EoIK4gw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_TK6EQOxtEe6Epv5EoIK4gw" memberEnd="_TK6EQextEe6Epv5EoIK4gw _TK6EROxtEe6Epv5EoIK4gw" navigableOwnedEnd="_TK6EQextEe6Epv5EoIK4gw _TK6EROxtEe6Epv5EoIK4gw">
+      <ownedEnd xmi:id="_TK6EQextEe6Epv5EoIK4gw" name="node2s" type="_NskzUOxtEe6Epv5EoIK4gw" association="_TK6EQOxtEe6Epv5EoIK4gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TK6EQuxtEe6Epv5EoIK4gw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TK6EQ-xtEe6Epv5EoIK4gw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_TK6EROxtEe6Epv5EoIK4gw" name="node1s" type="_PF7L4OxtEe6Epv5EoIK4gw" association="_TK6EQOxtEe6Epv5EoIK4gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TK6ERextEe6Epv5EoIK4gw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TK6ERuxtEe6Epv5EoIK4gw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_9VpLsOxtEe6Epv5EoIK4gw" name="Interface2"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_-2PbwOxtEe6Epv5EoIK4gw" name="Interface3"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="__XDp0OxtEe6Epv5EoIK4gw" name="Interface4"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_7IMnQOxuEe6Epv5EoIK4gw" client="_Oan-MOxDEe6Epv5EoIK4gw" supplier="_9VpLsOxtEe6Epv5EoIK4gw"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_-Sex8OxuEe6Epv5EoIK4gw" client="_cHO4IOxDEe6Epv5EoIK4gw" supplier="__XDp0OxtEe6Epv5EoIK4gw"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="__dGyAOxuEe6Epv5EoIK4gw" client="_ZZL9gOxDEe6Epv5EoIK4gw" supplier="_-2PbwOxtEe6Epv5EoIK4gw"/>
+    <profileApplication xmi:id="_eQLR4OxUEe6Epv5EoIK4gw">
+      <eAnnotations xmi:id="_eQLR4exUEe6Epv5EoIK4gw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Executable xmi:id="_eQL48OxUEe6Epv5EoIK4gw" base_Artifact="_Y41ZwOxUEe6Epv5EoIK4gw"/>
+  <standard:Executable xmi:id="_ueKPgOxsEe6Epv5EoIK4gw" base_Artifact="_YlnO4OxsEe6Epv5EoIK4gw"/>
+  <standard:Executable xmi:id="_MciHwOxtEe6Epv5EoIK4gw" base_Artifact="_HgOl0OxtEe6Epv5EoIK4gw"/>
+</xmi:XMI>

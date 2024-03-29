@@ -69,6 +69,48 @@
     <packagedElement xmi:type="uml:Usage" xmi:id="_7IMnQOxuEe6Epv5EoIK4gw" client="_Oan-MOxDEe6Epv5EoIK4gw" supplier="_9VpLsOxtEe6Epv5EoIK4gw"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_-Sex8OxuEe6Epv5EoIK4gw" client="_cHO4IOxDEe6Epv5EoIK4gw" supplier="__XDp0OxtEe6Epv5EoIK4gw"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="__dGyAOxuEe6Epv5EoIK4gw" client="_ZZL9gOxDEe6Epv5EoIK4gw" supplier="_-2PbwOxtEe6Epv5EoIK4gw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Oe8vUO3JEe6RxtnKpeIvUw" name="Sistema de Gestión Digital de Filas" useCase="_jRbfwO3JEe6RxtnKpeIvUw _uTL9AO3JEe6RxtnKpeIvUw _2JDtEO3JEe6RxtnKpeIvUw _8LZqAO3JEe6RxtnKpeIvUw _Ec-eoO3KEe6RxtnKpeIvUw">
+      <ownedUseCase xmi:id="_jRbfwO3JEe6RxtnKpeIvUw" name="Ingresar a la fila" subject="_Oe8vUO3JEe6RxtnKpeIvUw"/>
+      <ownedUseCase xmi:id="_uTL9AO3JEe6RxtnKpeIvUw" name="Cancelar registro" subject="_Oe8vUO3JEe6RxtnKpeIvUw"/>
+      <ownedUseCase xmi:id="_2JDtEO3JEe6RxtnKpeIvUw" name="Llamar cliente" subject="_Oe8vUO3JEe6RxtnKpeIvUw"/>
+      <ownedUseCase xmi:id="_8LZqAO3JEe6RxtnKpeIvUw" name="Reasignar turno de cliente" subject="_Oe8vUO3JEe6RxtnKpeIvUw"/>
+      <ownedUseCase xmi:id="_Ec-eoO3KEe6RxtnKpeIvUw" name="Realizar monitoreo" subject="_Oe8vUO3JEe6RxtnKpeIvUw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_YQ4jcO3JEe6RxtnKpeIvUw" name="Cliente">
+      <eAnnotations xmi:id="_YQ5KgO3JEe6RxtnKpeIvUw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details xmi:id="_YQ5Kge3JEe6RxtnKpeIvUw" key="Human"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_bsVWoO3JEe6RxtnKpeIvUw" name="Operario">
+      <eAnnotations xmi:id="_bsVWoe3JEe6RxtnKpeIvUw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details xmi:id="_bsVWou3JEe6RxtnKpeIvUw" key="Human"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_dsxkYO3JEe6RxtnKpeIvUw" name="Administrador">
+      <eAnnotations xmi:id="_dsxkYe3JEe6RxtnKpeIvUw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details xmi:id="_dsxkYu3JEe6RxtnKpeIvUw" key="Human"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_IfqQ8O3KEe6RxtnKpeIvUw" memberEnd="_IfqQ8e3KEe6RxtnKpeIvUw _Ifq4AO3KEe6RxtnKpeIvUw">
+      <ownedEnd xmi:id="_IfqQ8e3KEe6RxtnKpeIvUw" type="_YQ4jcO3JEe6RxtnKpeIvUw" association="_IfqQ8O3KEe6RxtnKpeIvUw"/>
+      <ownedEnd xmi:id="_Ifq4AO3KEe6RxtnKpeIvUw" type="_jRbfwO3JEe6RxtnKpeIvUw" association="_IfqQ8O3KEe6RxtnKpeIvUw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JNqmcO3KEe6RxtnKpeIvUw" memberEnd="_JNqmce3KEe6RxtnKpeIvUw _JNrNgO3KEe6RxtnKpeIvUw">
+      <ownedEnd xmi:id="_JNqmce3KEe6RxtnKpeIvUw" type="_YQ4jcO3JEe6RxtnKpeIvUw" association="_JNqmcO3KEe6RxtnKpeIvUw"/>
+      <ownedEnd xmi:id="_JNrNgO3KEe6RxtnKpeIvUw" type="_uTL9AO3JEe6RxtnKpeIvUw" association="_JNqmcO3KEe6RxtnKpeIvUw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Jl4SIO3KEe6RxtnKpeIvUw" memberEnd="_Jl4SIe3KEe6RxtnKpeIvUw _Jl4SIu3KEe6RxtnKpeIvUw">
+      <ownedEnd xmi:id="_Jl4SIe3KEe6RxtnKpeIvUw" type="_2JDtEO3JEe6RxtnKpeIvUw" association="_Jl4SIO3KEe6RxtnKpeIvUw"/>
+      <ownedEnd xmi:id="_Jl4SIu3KEe6RxtnKpeIvUw" type="_bsVWoO3JEe6RxtnKpeIvUw" association="_Jl4SIO3KEe6RxtnKpeIvUw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_J-XDkO3KEe6RxtnKpeIvUw" memberEnd="_J-XDke3KEe6RxtnKpeIvUw _J-XDku3KEe6RxtnKpeIvUw">
+      <ownedEnd xmi:id="_J-XDke3KEe6RxtnKpeIvUw" type="_8LZqAO3JEe6RxtnKpeIvUw" association="_J-XDkO3KEe6RxtnKpeIvUw"/>
+      <ownedEnd xmi:id="_J-XDku3KEe6RxtnKpeIvUw" type="_bsVWoO3JEe6RxtnKpeIvUw" association="_J-XDkO3KEe6RxtnKpeIvUw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Q3fekO3KEe6RxtnKpeIvUw" memberEnd="_Q3feke3KEe6RxtnKpeIvUw _Q3feku3KEe6RxtnKpeIvUw">
+      <ownedEnd xmi:id="_Q3feke3KEe6RxtnKpeIvUw" type="_Ec-eoO3KEe6RxtnKpeIvUw" association="_Q3fekO3KEe6RxtnKpeIvUw"/>
+      <ownedEnd xmi:id="_Q3feku3KEe6RxtnKpeIvUw" type="_dsxkYO3JEe6RxtnKpeIvUw" association="_Q3fekO3KEe6RxtnKpeIvUw"/>
+    </packagedElement>
     <profileApplication xmi:id="_eQLR4OxUEe6Epv5EoIK4gw">
       <eAnnotations xmi:id="_eQLR4exUEe6Epv5EoIK4gw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>

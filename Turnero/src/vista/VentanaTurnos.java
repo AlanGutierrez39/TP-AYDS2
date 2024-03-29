@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import java.awt.Dimension;
 
 public class VentanaTurnos extends JFrame {
 
@@ -57,6 +58,9 @@ public class VentanaTurnos extends JFrame {
 		this.contentPane.setLayout(new BorderLayout(0, 0));
 		
 		this.panel = new JPanel();
+		this.panel.setMinimumSize(new Dimension(875, 720));
+		this.panel.setPreferredSize(new Dimension(875, 720));
+		this.panel.setSize(new Dimension(875, 720));
 		this.contentPane.add(this.panel, BorderLayout.CENTER);
 		this.panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
@@ -97,6 +101,9 @@ public class VentanaTurnos extends JFrame {
 		this.panel.add(this.lblNewLabel_11);
 		
 		this.panel_publicidad = new JPanel();
+		this.panel_publicidad.setMinimumSize(new Dimension(405, 720));
+		this.panel_publicidad.setPreferredSize(new Dimension(405, 720));
+		this.panel_publicidad.setSize(new Dimension(405, 720));
 		this.contentPane.add(this.panel_publicidad, BorderLayout.WEST);
 	}
 

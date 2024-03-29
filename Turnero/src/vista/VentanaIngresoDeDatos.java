@@ -56,6 +56,7 @@ public class VentanaIngresoDeDatos extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaIngresoDeDatos() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 360, 640);//setBounds(100, 100, 1080, 1920);
 		this.contentPane = new JPanel();

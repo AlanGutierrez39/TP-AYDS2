@@ -42,41 +42,46 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_lSft0OxDEe6Epv5EoIK4gw" name="Registro"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_r_bf4OxDEe6Epv5EoIK4gw" client="_VY70IOxDEe6Epv5EoIK4gw _udKGkOxDEe6Epv5EoIK4gw _l90JoOxtEe6Epv5EoIK4gw" supplier="_lSft0OxDEe6Epv5EoIK4gw"/>
-    <packagedElement xmi:type="uml:Device" xmi:id="_hHf5wOxTEe6Epv5EoIK4gw" name="Tablet">
-      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_j36y8OxTEe6Epv5EoIK4gw" name="Android">
-        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_Y41ZwOxUEe6Epv5EoIK4gw" name="Turnero"/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_hHf5wOxTEe6Epv5EoIK4gw" name="PC del tótem">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_j36y8OxTEe6Epv5EoIK4gw" name="SO Linux">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_Y41ZwOxUEe6Epv5EoIK4gw" name="registrarCliente.exe">
+          <generalization xmi:id="_JtkskO4tEe6c7rHiT2MuKQ" general="_BqMsAO4tEe6c7rHiT2MuKQ"/>
+          <manifestation xmi:id="_kfDVkO4uEe6c7rHiT2MuKQ" client="_Y41ZwOxUEe6Epv5EoIK4gw" supplier="_cHaVMO4uEe6c7rHiT2MuKQ" utilizedElement="_cHaVMO4uEe6c7rHiT2MuKQ"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_BqMsAO4tEe6c7rHiT2MuKQ" name="cliente_nuevo.xml"/>
       </nestedClassifier>
-      <nestedNode xmi:id="_1ayXUOxUEe6Epv5EoIK4gw" name="Node1"/>
+      <nestedNode xmi:id="_RLZ6oO4uEe6c7rHiT2MuKQ" name="Lan"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Device" xmi:id="_5cocIOxUEe6Epv5EoIK4gw" name="Servidor">
-      <nestedClassifier xmi:type="uml:Node" xmi:id="_EhIrYOxVEe6Epv5EoIK4gw" name="Node1"/>
-      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_OLc9IOxsEe6Epv5EoIK4gw" name="Windows Server">
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_OLc9IOxsEe6Epv5EoIK4gw" name="SO Linux">
         <nestedClassifier xmi:type="uml:Artifact" xmi:id="_YlnO4OxsEe6Epv5EoIK4gw" name="Turnero"/>
       </nestedNode>
-      <nestedNode xmi:id="_NskzUOxtEe6Epv5EoIK4gw" name="Node2"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Device" xmi:id="_v0nsIOxsEe6Epv5EoIK4gw" name="Estación de trabajo">
+    <packagedElement xmi:type="uml:Device" xmi:id="_v0nsIOxsEe6Epv5EoIK4gw" name="PC en el box de trabajo">
       <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_4ujhQOxsEe6Epv5EoIK4gw" name="Windows 10 Pro">
-        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_HgOl0OxtEe6Epv5EoIK4gw" name="Turnero"/>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_HgOl0OxtEe6Epv5EoIK4gw" name="atenderCliente.exe">
+          <manifestation xmi:id="_DbOS0O4vEe6c7rHiT2MuKQ" client="_HgOl0OxtEe6Epv5EoIK4gw" supplier="__qKcAO4uEe6c7rHiT2MuKQ" utilizedElement="__qKcAO4uEe6c7rHiT2MuKQ"/>
+        </nestedClassifier>
       </nestedNode>
-      <nestedNode xmi:id="_PF7L4OxtEe6Epv5EoIK4gw" name="Node1"/>
+      <nestedNode xmi:id="_rtdnkO4vEe6c7rHiT2MuKQ" name="Node1"/>
+      <nestedNode xmi:id="_SJsc8O4wEe6c7rHiT2MuKQ" name="Node2"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_RxBgMOxtEe6Epv5EoIK4gw" memberEnd="_RxBgMextEe6Epv5EoIK4gw _RxCuUuxtEe6Epv5EoIK4gw" navigableOwnedEnd="_RxBgMextEe6Epv5EoIK4gw _RxCuUuxtEe6Epv5EoIK4gw">
-      <ownedEnd xmi:id="_RxBgMextEe6Epv5EoIK4gw" name="node1s" type="_1ayXUOxUEe6Epv5EoIK4gw" association="_RxBgMOxtEe6Epv5EoIK4gw">
+      <ownedEnd xmi:id="_RxBgMextEe6Epv5EoIK4gw" name="node1s" association="_RxBgMOxtEe6Epv5EoIK4gw">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RxCuUOxtEe6Epv5EoIK4gw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RxCuUextEe6Epv5EoIK4gw" value="*"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_RxCuUuxtEe6Epv5EoIK4gw" name="node1s" type="_EhIrYOxVEe6Epv5EoIK4gw" association="_RxBgMOxtEe6Epv5EoIK4gw">
+      <ownedEnd xmi:id="_RxCuUuxtEe6Epv5EoIK4gw" name="node1s" association="_RxBgMOxtEe6Epv5EoIK4gw">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RxCuU-xtEe6Epv5EoIK4gw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RxCuVOxtEe6Epv5EoIK4gw" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_TK6EQOxtEe6Epv5EoIK4gw" memberEnd="_TK6EQextEe6Epv5EoIK4gw _TK6EROxtEe6Epv5EoIK4gw" navigableOwnedEnd="_TK6EQextEe6Epv5EoIK4gw _TK6EROxtEe6Epv5EoIK4gw">
-      <ownedEnd xmi:id="_TK6EQextEe6Epv5EoIK4gw" name="node2s" type="_NskzUOxtEe6Epv5EoIK4gw" association="_TK6EQOxtEe6Epv5EoIK4gw">
+      <ownedEnd xmi:id="_TK6EQextEe6Epv5EoIK4gw" name="node2s" association="_TK6EQOxtEe6Epv5EoIK4gw">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TK6EQuxtEe6Epv5EoIK4gw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TK6EQ-xtEe6Epv5EoIK4gw" value="*"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_TK6EROxtEe6Epv5EoIK4gw" name="node1s" type="_PF7L4OxtEe6Epv5EoIK4gw" association="_TK6EQOxtEe6Epv5EoIK4gw">
+      <ownedEnd xmi:id="_TK6EROxtEe6Epv5EoIK4gw" name="node1s" association="_TK6EQOxtEe6Epv5EoIK4gw">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TK6ERextEe6Epv5EoIK4gw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TK6ERuxtEe6Epv5EoIK4gw" value="*"/>
       </ownedEnd>
@@ -129,6 +134,75 @@
       <ownedEnd xmi:id="_Q3feke3KEe6RxtnKpeIvUw" type="_Ec-eoO3KEe6RxtnKpeIvUw" association="_Q3fekO3KEe6RxtnKpeIvUw"/>
       <ownedEnd xmi:id="_Q3feku3KEe6RxtnKpeIvUw" type="_dsxkYO3JEe6RxtnKpeIvUw" association="_Q3fekO3KEe6RxtnKpeIvUw"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Device" xmi:id="_i2RPUO4tEe6c7rHiT2MuKQ" name="PC conectada a la pantalla">
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_t7_mkO4tEe6c7rHiT2MuKQ" name="SO Linux">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_zNWygO4tEe6c7rHiT2MuKQ" name="mostrarClientes.exe">
+          <generalization xmi:id="_I-82kO4uEe6c7rHiT2MuKQ" general="_7xn5oO4tEe6c7rHiT2MuKQ"/>
+          <generalization xmi:id="_JctwoO4uEe6c7rHiT2MuKQ" general="_BJdhAO4uEe6c7rHiT2MuKQ"/>
+          <manifestation xmi:id="_tZhWMO4uEe6c7rHiT2MuKQ" client="_zNWygO4tEe6c7rHiT2MuKQ" supplier="_qfaVgO4uEe6c7rHiT2MuKQ" utilizedElement="_qfaVgO4uEe6c7rHiT2MuKQ"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_7xn5oO4tEe6c7rHiT2MuKQ" name="cola_clientes.xml"/>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_BJdhAO4uEe6c7rHiT2MuKQ" name="config_display.dat"/>
+      </nestedNode>
+      <nestedNode xmi:id="_O6uRcO4uEe6c7rHiT2MuKQ" name="Node1"/>
+      <nestedNode xmi:id="_FMJocO4wEe6c7rHiT2MuKQ" name="Node2"/>
+      <nestedNode xmi:id="_RGTGQO4wEe6c7rHiT2MuKQ" name="Node3"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_SgSC4O4uEe6c7rHiT2MuKQ" name="Lan" memberEnd="_SgSC4e4uEe6c7rHiT2MuKQ _SgSp8u4uEe6c7rHiT2MuKQ" navigableOwnedEnd="_SgSC4e4uEe6c7rHiT2MuKQ _SgSp8u4uEe6c7rHiT2MuKQ">
+      <ownedEnd xmi:id="_SgSC4e4uEe6c7rHiT2MuKQ" name="node1s" type="_O6uRcO4uEe6c7rHiT2MuKQ" association="_SgSC4O4uEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SgSp8O4uEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SgSp8e4uEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_SgSp8u4uEe6c7rHiT2MuKQ" name="node1s" type="_RLZ6oO4uEe6c7rHiT2MuKQ" association="_SgSC4O4uEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SgSp8-4uEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SgTRAO4uEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_cHaVMO4uEe6c7rHiT2MuKQ" name="Registrar cliente"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_qfaVgO4uEe6c7rHiT2MuKQ" name="Notificar clientes"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="__qKcAO4uEe6c7rHiT2MuKQ" name="Atención del cliente"/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_OY7WgO4vEe6c7rHiT2MuKQ" name="PC del Administrador">
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_UOwhcO4vEe6c7rHiT2MuKQ" name="Windows 10 Pro">
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_aaj8YO4vEe6c7rHiT2MuKQ" name="monitorear.exe">
+          <generalization xmi:id="_iAzVAO4vEe6c7rHiT2MuKQ" general="_fA-G0O4vEe6c7rHiT2MuKQ"/>
+          <manifestation xmi:id="_oH85cO4vEe6c7rHiT2MuKQ" client="_aaj8YO4vEe6c7rHiT2MuKQ" supplier="_lm7HIO4vEe6c7rHiT2MuKQ" utilizedElement="_lm7HIO4vEe6c7rHiT2MuKQ"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Artifact" xmi:id="_fA-G0O4vEe6c7rHiT2MuKQ" name="estadísticas.pdf"/>
+      </nestedNode>
+      <nestedNode xmi:id="_q1dokO4vEe6c7rHiT2MuKQ" name="Node1"/>
+      <nestedNode xmi:id="_KAgvUO4wEe6c7rHiT2MuKQ" name="Node2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_lm7HIO4vEe6c7rHiT2MuKQ" name="Monitoreo"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_us3X8O4vEe6c7rHiT2MuKQ" name="Tpc" memberEnd="_us3X8e4vEe6c7rHiT2MuKQ _us3X9O4vEe6c7rHiT2MuKQ" navigableOwnedEnd="_us3X8e4vEe6c7rHiT2MuKQ _us3X9O4vEe6c7rHiT2MuKQ">
+      <ownedEnd xmi:id="_us3X8e4vEe6c7rHiT2MuKQ" name="node1s" type="_q1dokO4vEe6c7rHiT2MuKQ" association="_us3X8O4vEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_us3X8u4vEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_us3X8-4vEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_us3X9O4vEe6c7rHiT2MuKQ" name="node1s" type="_rtdnkO4vEe6c7rHiT2MuKQ" association="_us3X8O4vEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_us3_AO4vEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_us3_Ae4vEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Lkj8AO4wEe6c7rHiT2MuKQ" name="Tcp" memberEnd="_LkkjEO4wEe6c7rHiT2MuKQ _LkkjE-4wEe6c7rHiT2MuKQ" navigableOwnedEnd="_LkkjEO4wEe6c7rHiT2MuKQ _LkkjE-4wEe6c7rHiT2MuKQ">
+      <ownedEnd xmi:id="_LkkjEO4wEe6c7rHiT2MuKQ" name="node2s" type="_KAgvUO4wEe6c7rHiT2MuKQ" association="_Lkj8AO4wEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LkkjEe4wEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LkkjEu4wEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_LkkjE-4wEe6c7rHiT2MuKQ" name="node2s" type="_FMJocO4wEe6c7rHiT2MuKQ" association="_Lkj8AO4wEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LkkjFO4wEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LkkjFe4wEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_USOPsO4wEe6c7rHiT2MuKQ" name="Lan" memberEnd="_USOPse4wEe6c7rHiT2MuKQ _USOPtO4wEe6c7rHiT2MuKQ" navigableOwnedEnd="_USOPse4wEe6c7rHiT2MuKQ _USOPtO4wEe6c7rHiT2MuKQ">
+      <ownedEnd xmi:id="_USOPse4wEe6c7rHiT2MuKQ" name="node2s" type="_SJsc8O4wEe6c7rHiT2MuKQ" association="_USOPsO4wEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_USOPsu4wEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_USOPs-4wEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_USOPtO4wEe6c7rHiT2MuKQ" name="node3s" type="_RGTGQO4wEe6c7rHiT2MuKQ" association="_USOPsO4wEe6c7rHiT2MuKQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_USO2wO4wEe6c7rHiT2MuKQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_USO2we4wEe6c7rHiT2MuKQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
     <profileApplication xmi:id="_eQLR4OxUEe6Epv5EoIK4gw">
       <eAnnotations xmi:id="_eQLR4exUEe6Epv5EoIK4gw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
@@ -139,4 +213,10 @@
   <standard:Executable xmi:id="_eQL48OxUEe6Epv5EoIK4gw" base_Artifact="_Y41ZwOxUEe6Epv5EoIK4gw"/>
   <standard:Executable xmi:id="_ueKPgOxsEe6Epv5EoIK4gw" base_Artifact="_YlnO4OxsEe6Epv5EoIK4gw"/>
   <standard:Executable xmi:id="_MciHwOxtEe6Epv5EoIK4gw" base_Artifact="_HgOl0OxtEe6Epv5EoIK4gw"/>
+  <standard:Document xmi:id="_G1hhYO4tEe6c7rHiT2MuKQ" base_Artifact="_BqMsAO4tEe6c7rHiT2MuKQ"/>
+  <standard:Executable xmi:id="_4vrLkO4tEe6c7rHiT2MuKQ" base_Artifact="_zNWygO4tEe6c7rHiT2MuKQ"/>
+  <standard:Document xmi:id="_AI5b4O4uEe6c7rHiT2MuKQ" base_Artifact="_7xn5oO4tEe6c7rHiT2MuKQ"/>
+  <standard:Document xmi:id="_IBPRIO4uEe6c7rHiT2MuKQ" base_Artifact="_BJdhAO4uEe6c7rHiT2MuKQ"/>
+  <standard:Executable xmi:id="_dt1D8O4vEe6c7rHiT2MuKQ" base_Artifact="_aaj8YO4vEe6c7rHiT2MuKQ"/>
+  <standard:Document xmi:id="_kXGeAO4vEe6c7rHiT2MuKQ" base_Artifact="_fA-G0O4vEe6c7rHiT2MuKQ"/>
 </xmi:XMI>

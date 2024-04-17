@@ -3,6 +3,7 @@
   <uml:Model xmi:id="_cKlZAOxBEe6Epv5EoIK4gw" name="NewModel">
     <packagedElement xmi:type="uml:Component" xmi:id="_Oan-MOxDEe6Epv5EoIK4gw" name="Llamado">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_x2Lk0O3YEe6QNolnF0WnwQ" name="LlamadoPort" type="_Oan-MOxDEe6Epv5EoIK4gw"/>
+      <ownedOperation xmi:id="_lkCGAPznEe6zLfKSY1rUsw" name="Operation_1"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_Rf8wYOxDEe6Epv5EoIK4gw" name="Gestión de cola">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_udKtoOxDEe6Epv5EoIK4gw" name="Gestión de colaPort" type="_Rf8wYOxDEe6Epv5EoIK4gw"/>
@@ -30,17 +31,25 @@
       <interfaceRealization xmi:id="_3uL-gOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw _9FxpwO3YEe6QNolnF0WnwQ" supplier="_-2PbwOxtEe6Epv5EoIK4gw" contract="_-2PbwOxtEe6Epv5EoIK4gw"/>
       <interfaceRealization xmi:id="_5XuIIOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw _x2JIkO3YEe6QNolnF0WnwQ" supplier="_9VpLsOxtEe6Epv5EoIK4gw" contract="_9VpLsOxtEe6Epv5EoIK4gw"/>
       <interfaceRealization xmi:id="_93ZYcOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw _GETrAO3ZEe6QNolnF0WnwQ" supplier="__XDp0OxtEe6Epv5EoIK4gw" contract="__XDp0OxtEe6Epv5EoIK4gw"/>
+      <ownedOperation xmi:id="_aN04MPzmEe6zLfKSY1rUsw" name="Operation_1"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_VY70IOxDEe6Epv5EoIK4gw" name="Registro">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_udKtouxDEe6Epv5EoIK4gw" name="RegistroPort" type="_VY70IOxDEe6Epv5EoIK4gw"/>
+      <ownedOperation xmi:id="_STbxUPziEe6zLfKSY1rUsw" name="Operation_1"/>
+      <ownedOperation xmi:id="_UAg-MPziEe6zLfKSY1rUsw" name="Operation_2"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_ZZL9gOxDEe6Epv5EoIK4gw" name="Notificación">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_9Fxpwe3YEe6QNolnF0WnwQ" name="NotificaciónPort" type="_ZZL9gOxDEe6Epv5EoIK4gw"/>
+      <ownedOperation xmi:id="_LktAwPzoEe6zLfKSY1rUsw" name="Operation_1"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_cHO4IOxDEe6Epv5EoIK4gw" name="Monitoreo">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_GETrAu3ZEe6QNolnF0WnwQ" name="MonitoreoPort" type="_cHO4IOxDEe6Epv5EoIK4gw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_lSft0OxDEe6Epv5EoIK4gw" name="Registro"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_lSft0OxDEe6Epv5EoIK4gw" name="Registro">
+      <ownedOperation xmi:id="_23m_QPzqEe6zLfKSY1rUsw" name="registrarCliente">
+        <ownedParameter xmi:id="_6egNcPzqEe6zLfKSY1rUsw" name="DNI"/>
+      </ownedOperation>
+    </packagedElement>
     <packagedElement xmi:type="uml:Usage" xmi:id="_r_bf4OxDEe6Epv5EoIK4gw" client="_VY70IOxDEe6Epv5EoIK4gw _udKGkOxDEe6Epv5EoIK4gw _l90JoOxtEe6Epv5EoIK4gw" supplier="_lSft0OxDEe6Epv5EoIK4gw"/>
     <packagedElement xmi:type="uml:Device" xmi:id="_hHf5wOxTEe6Epv5EoIK4gw" name="PC del tótem">
       <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_j36y8OxTEe6Epv5EoIK4gw" name="SO Linux">
@@ -66,29 +75,21 @@
       <nestedNode xmi:id="_rtdnkO4vEe6c7rHiT2MuKQ" name="Node1"/>
       <nestedNode xmi:id="_SJsc8O4wEe6c7rHiT2MuKQ" name="Node2"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_RxBgMOxtEe6Epv5EoIK4gw" memberEnd="_RxBgMextEe6Epv5EoIK4gw _RxCuUuxtEe6Epv5EoIK4gw" navigableOwnedEnd="_RxBgMextEe6Epv5EoIK4gw _RxCuUuxtEe6Epv5EoIK4gw">
-      <ownedEnd xmi:id="_RxBgMextEe6Epv5EoIK4gw" name="node1s" association="_RxBgMOxtEe6Epv5EoIK4gw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RxCuUOxtEe6Epv5EoIK4gw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RxCuUextEe6Epv5EoIK4gw" value="*"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_RxCuUuxtEe6Epv5EoIK4gw" name="node1s" association="_RxBgMOxtEe6Epv5EoIK4gw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RxCuU-xtEe6Epv5EoIK4gw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RxCuVOxtEe6Epv5EoIK4gw" value="*"/>
-      </ownedEnd>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_9VpLsOxtEe6Epv5EoIK4gw" name="Llamado">
+      <ownedOperation xmi:id="_0T3soPzpEe6zLfKSY1rUsw" name="llamarCliente">
+        <ownedParameter xmi:id="_5UlNcPzpEe6zLfKSY1rUsw" name="DNI"/>
+        <ownedParameter xmi:id="_50KFYPzpEe6zLfKSY1rUsw" name="puesto"/>
+      </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_TK6EQOxtEe6Epv5EoIK4gw" memberEnd="_TK6EQextEe6Epv5EoIK4gw _TK6EROxtEe6Epv5EoIK4gw" navigableOwnedEnd="_TK6EQextEe6Epv5EoIK4gw _TK6EROxtEe6Epv5EoIK4gw">
-      <ownedEnd xmi:id="_TK6EQextEe6Epv5EoIK4gw" name="node2s" association="_TK6EQOxtEe6Epv5EoIK4gw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TK6EQuxtEe6Epv5EoIK4gw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TK6EQ-xtEe6Epv5EoIK4gw" value="*"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_TK6EROxtEe6Epv5EoIK4gw" name="node1s" association="_TK6EQOxtEe6Epv5EoIK4gw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TK6ERextEe6Epv5EoIK4gw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TK6ERuxtEe6Epv5EoIK4gw" value="*"/>
-      </ownedEnd>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_-2PbwOxtEe6Epv5EoIK4gw" name="Notificacion">
+      <ownedOperation xmi:id="_prcf8PzqEe6zLfKSY1rUsw" name="actualizarPantalla">
+        <ownedParameter xmi:id="_tmeyIPzqEe6zLfKSY1rUsw" name="DNI"/>
+        <ownedParameter xmi:id="_t4BOEPzqEe6zLfKSY1rUsw" name="puesto"/>
+      </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_9VpLsOxtEe6Epv5EoIK4gw" name="Llamado"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_-2PbwOxtEe6Epv5EoIK4gw" name="Actualizar pantalla"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="__XDp0OxtEe6Epv5EoIK4gw" name="Monitoreo"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="__XDp0OxtEe6Epv5EoIK4gw" name="Monitoreo">
+      <ownedOperation xmi:id="_1CLHoPzqEe6zLfKSY1rUsw" name="realizarMonitoreo"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Usage" xmi:id="_7IMnQOxuEe6Epv5EoIK4gw" client="_Oan-MOxDEe6Epv5EoIK4gw _x2JIkO3YEe6QNolnF0WnwQ" supplier="_9VpLsOxtEe6Epv5EoIK4gw"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_-Sex8OxuEe6Epv5EoIK4gw" client="_cHO4IOxDEe6Epv5EoIK4gw _GETrAO3ZEe6QNolnF0WnwQ" supplier="__XDp0OxtEe6Epv5EoIK4gw"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="__dGyAOxuEe6Epv5EoIK4gw" client="_ZZL9gOxDEe6Epv5EoIK4gw _9FxpwO3YEe6QNolnF0WnwQ" supplier="_-2PbwOxtEe6Epv5EoIK4gw"/>
@@ -202,6 +203,50 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_USO2wO4wEe6c7rHiT2MuKQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_USO2we4wEe6c7rHiT2MuKQ" value="*"/>
       </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_9RpRAPzKEe6zLfKSY1rUsw" name="NewModel">
+      <ownedAttribute xmi:id="_ysHogPzlEe6zLfKSY1rUsw" name="Registro" type="_VY70IOxDEe6Epv5EoIK4gw"/>
+      <ownedAttribute xmi:id="_jZCx8PzjEe6zLfKSY1rUsw" name="Gestión de cola" type="_Rf8wYOxDEe6Epv5EoIK4gw"/>
+      <ownedAttribute xmi:id="_1QfNQPzmEe6zLfKSY1rUsw" name="Monitoreo" type="_cHO4IOxDEe6Epv5EoIK4gw"/>
+      <ownedAttribute xmi:id="_p2EYYPzmEe6zLfKSY1rUsw" name="Llamado" type="_Oan-MOxDEe6Epv5EoIK4gw"/>
+      <ownedAttribute xmi:id="_c1HK4PzjEe6zLfKSY1rUsw" name="Notificación" type="_ZZL9gOxDEe6Epv5EoIK4gw"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_aN1fQPzmEe6zLfKSY1rUsw" name="Operation_1"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_lkCtEfznEe6zLfKSY1rUsw" name="Operation_1"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_9ZwlAfznEe6zLfKSY1rUsw" name="Operation_1"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Lktn0fzoEe6zLfKSY1rUsw" name="Operation_1"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Ra-3ofzoEe6zLfKSY1rUsw" name="Operation_1"/>
+      <lifeline xmi:id="_ysHogfzlEe6zLfKSY1rUsw" name="Registro" represents="_ysHogPzlEe6zLfKSY1rUsw" coveredBy="_aN1fQfzmEe6zLfKSY1rUsw"/>
+      <lifeline xmi:id="_jZDZAPzjEe6zLfKSY1rUsw" name="Gestión de cola" represents="_jZCx8PzjEe6zLfKSY1rUsw" coveredBy="_aN1fQvzmEe6zLfKSY1rUsw _aN1fQ_zmEe6zLfKSY1rUsw _aN1fRPzmEe6zLfKSY1rUsw _lkCtF_znEe6zLfKSY1rUsw _9ZxMEPznEe6zLfKSY1rUsw _9ZxMEvznEe6zLfKSY1rUsw _9ZxMEfznEe6zLfKSY1rUsw _Ra-3pPzoEe6zLfKSY1rUsw _Ra-3pvzoEe6zLfKSY1rUsw _Ra-3pfzoEe6zLfKSY1rUsw"/>
+      <lifeline xmi:id="_1QfNQfzmEe6zLfKSY1rUsw" name="Monitoreo" represents="_1QfNQPzmEe6zLfKSY1rUsw" coveredBy="_Ra-3o_zoEe6zLfKSY1rUsw _Ra-3p_zoEe6zLfKSY1rUsw"/>
+      <lifeline xmi:id="_p2E_cPzmEe6zLfKSY1rUsw" name="Llamado" represents="_p2EYYPzmEe6zLfKSY1rUsw" coveredBy="_lkCtFfznEe6zLfKSY1rUsw _9ZwlA_znEe6zLfKSY1rUsw _9ZxME_znEe6zLfKSY1rUsw _Lktn0vzoEe6zLfKSY1rUsw"/>
+      <lifeline xmi:id="_c1HK4fzjEe6zLfKSY1rUsw" name="Notificación" represents="_c1HK4PzjEe6zLfKSY1rUsw" coveredBy="_Lktn0_zoEe6zLfKSY1rUsw _Lktn1PzoEe6zLfKSY1rUsw _Lktn1fzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_aN1fQfzmEe6zLfKSY1rUsw" name="Operation_1_sender" covered="_ysHogfzlEe6zLfKSY1rUsw" message="_aN04MfzmEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_aN1fQvzmEe6zLfKSY1rUsw" name="Operation_1_receiver" covered="_jZDZAPzjEe6zLfKSY1rUsw" message="_aN04MfzmEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_aN1fQ_zmEe6zLfKSY1rUsw" name="Operation_1" covered="_jZDZAPzjEe6zLfKSY1rUsw" finish="_aN1fRPzmEe6zLfKSY1rUsw" start="_aN1fQvzmEe6zLfKSY1rUsw" behavior="_aN1fQPzmEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_aN1fRPzmEe6zLfKSY1rUsw" name="Operation_1_finish" covered="_jZDZAPzjEe6zLfKSY1rUsw" execution="_aN1fQ_zmEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9ZwlA_znEe6zLfKSY1rUsw" name="Operation_1_sender" covered="_p2E_cPzmEe6zLfKSY1rUsw" message="_9ZwlAPznEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9ZxMEPznEe6zLfKSY1rUsw" name="Operation_1_receiver" covered="_jZDZAPzjEe6zLfKSY1rUsw" message="_9ZwlAPznEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_9ZxMEvznEe6zLfKSY1rUsw" name="Operation_1" covered="_jZDZAPzjEe6zLfKSY1rUsw" finish="_9ZxMEfznEe6zLfKSY1rUsw" start="_9ZxMEPznEe6zLfKSY1rUsw" behavior="_9ZwlAfznEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9ZxMEfznEe6zLfKSY1rUsw" name="Operation_1_reply_sender" covered="_jZDZAPzjEe6zLfKSY1rUsw" message="_9ZwlAvznEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9ZxME_znEe6zLfKSY1rUsw" name="Operation_1_reply_receiver" covered="_p2E_cPzmEe6zLfKSY1rUsw" message="_9ZwlAvznEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Lktn0vzoEe6zLfKSY1rUsw" name="Operation_1_sender" covered="_p2E_cPzmEe6zLfKSY1rUsw" message="_Lktn0PzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Lktn0_zoEe6zLfKSY1rUsw" name="Operation_1_receiver" covered="_c1HK4fzjEe6zLfKSY1rUsw" message="_Lktn0PzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_Lktn1PzoEe6zLfKSY1rUsw" name="Operation_1" covered="_c1HK4fzjEe6zLfKSY1rUsw" finish="_Lktn1fzoEe6zLfKSY1rUsw" start="_Lktn0_zoEe6zLfKSY1rUsw" behavior="_Lktn0fzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Lktn1fzoEe6zLfKSY1rUsw" name="Operation_1_finish" covered="_c1HK4fzjEe6zLfKSY1rUsw" execution="_Lktn1PzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ra-3o_zoEe6zLfKSY1rUsw" name="Operation_1_sender" covered="_1QfNQfzmEe6zLfKSY1rUsw" message="_Ra-3oPzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ra-3pPzoEe6zLfKSY1rUsw" name="Operation_1_receiver" covered="_jZDZAPzjEe6zLfKSY1rUsw" message="_Ra-3oPzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_Ra-3pvzoEe6zLfKSY1rUsw" name="Operation_1" covered="_jZDZAPzjEe6zLfKSY1rUsw" finish="_Ra-3pfzoEe6zLfKSY1rUsw" start="_Ra-3pPzoEe6zLfKSY1rUsw" behavior="_Ra-3ofzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ra-3pfzoEe6zLfKSY1rUsw" name="Operation_1_reply_sender" covered="_jZDZAPzjEe6zLfKSY1rUsw" message="_Ra-3ovzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ra-3p_zoEe6zLfKSY1rUsw" name="Operation_1_reply_receiver" covered="_1QfNQfzmEe6zLfKSY1rUsw" message="_Ra-3ovzoEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_lkCtFfznEe6zLfKSY1rUsw" name="_sender" covered="_p2E_cPzmEe6zLfKSY1rUsw" message="_lkCtEvznEe6zLfKSY1rUsw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_lkCtF_znEe6zLfKSY1rUsw" name="_receiver" covered="_jZDZAPzjEe6zLfKSY1rUsw" message="_lkCtEvznEe6zLfKSY1rUsw"/>
+      <message xmi:id="_aN04MfzmEe6zLfKSY1rUsw" name="registrarCliente(DNI)" messageSort="asynchCall" receiveEvent="_aN1fQvzmEe6zLfKSY1rUsw" sendEvent="_aN1fQfzmEe6zLfKSY1rUsw" signature="_aN04MPzmEe6zLfKSY1rUsw"/>
+      <message xmi:id="_lkCtEvznEe6zLfKSY1rUsw" name="" messageSort="reply" sendEvent="_lkCtFfznEe6zLfKSY1rUsw"/>
+      <message xmi:id="_9ZwlAPznEe6zLfKSY1rUsw" name="llamarCliente(DNI, puesto)" receiveEvent="_9ZxMEPznEe6zLfKSY1rUsw" sendEvent="_9ZwlA_znEe6zLfKSY1rUsw" signature="_aN04MPzmEe6zLfKSY1rUsw"/>
+      <message xmi:id="_9ZwlAvznEe6zLfKSY1rUsw" name="Operation_1_reply" messageSort="reply" receiveEvent="_9ZxME_znEe6zLfKSY1rUsw" sendEvent="_9ZxMEfznEe6zLfKSY1rUsw"/>
+      <message xmi:id="_Lktn0PzoEe6zLfKSY1rUsw" name="Operation_1" messageSort="asynchCall" receiveEvent="_Lktn0_zoEe6zLfKSY1rUsw" sendEvent="_Lktn0vzoEe6zLfKSY1rUsw" signature="_LktAwPzoEe6zLfKSY1rUsw"/>
+      <message xmi:id="_Ra-3oPzoEe6zLfKSY1rUsw" name="realizarMonitoreo()" receiveEvent="_Ra-3pPzoEe6zLfKSY1rUsw" sendEvent="_Ra-3o_zoEe6zLfKSY1rUsw" signature="_aN04MPzmEe6zLfKSY1rUsw"/>
+      <message xmi:id="_Ra-3ovzoEe6zLfKSY1rUsw" name="Operation_1_reply" messageSort="reply" receiveEvent="_Ra-3p_zoEe6zLfKSY1rUsw" sendEvent="_Ra-3pfzoEe6zLfKSY1rUsw"/>
     </packagedElement>
     <profileApplication xmi:id="_eQLR4OxUEe6Epv5EoIK4gw">
       <eAnnotations xmi:id="_eQLR4exUEe6Epv5EoIK4gw" source="http://www.eclipse.org/uml2/2.0.0/UML">

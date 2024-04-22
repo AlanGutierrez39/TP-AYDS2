@@ -79,6 +79,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IVista{
         jButton3.setBackground(new java.awt.Color(204, 153, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton3.setText("Salir");
+        jButton3.setActionCommand("SALIR");
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 270, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,6 +144,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IVista{
 @Override
  	public void setActionListener(ActionListener controlador) {
     	this.entrar.addActionListener(controlador);
+    	this.jButton3.addActionListener(controlador);
  	}
 
  	@Override

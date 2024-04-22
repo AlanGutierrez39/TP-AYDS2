@@ -66,7 +66,7 @@ public class Ventana_login extends javax.swing.JFrame implements I_Login,KeyList
         ATRASBOTONLOGIN.setBackground(new java.awt.Color(153, 153, 255));
         ATRASBOTONLOGIN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ATRASBOTONLOGIN.setText("Atras");
-        ATRASBOTONLOGIN.setActionCommand("SALIR");
+        ATRASBOTONLOGIN.setActionCommand("ATRAS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

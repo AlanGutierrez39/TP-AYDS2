@@ -56,16 +56,13 @@ public class ClienteHandler implements Runnable,Serializable{
             Object obj;
             try {
                 obj = ois.readObject();
-                //String dni=((Totem) obj).getDni();
-                //System.out.println(dni);
                 System.out.println(obj);
-                //dni="1";
             } catch (ClassNotFoundException ex) {
                 System.out.println("pasa1");
             }
             msgclient=in.readLine();
             this.id=msgclient;
-            
+          
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -78,8 +75,7 @@ public class ClienteHandler implements Runnable,Serializable{
                     break;
                 }
                 else{
-                	broadcastmessage();
-                    //broadcastmessage((Totem) ois.readObject());
+                    broadcastmessage();
                     break;
                 }
                   
@@ -107,24 +103,7 @@ public class ClienteHandler implements Runnable,Serializable{
             Logger.getLogger(ClienteHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    /*public void broadcastmessage(Totem obj){
-    try {
-        obj = (Totem)ois.readObject();
-        //String dni=obj.getDni();
-        for(int i=0;i<socketsTelevisores.size();i++){
-                  Socket socket = socketsTelevisores.get(i); // Obtener el socket
-                  OutputStream outputStream = socket.getOutputStream(); // Obtener el OutputStream
-                  PrintWriter telout = new PrintWriter(outputStream, true); // Envolver el OutputStream en un PrintWriter
-                  //System.out.println(dni);
-                  //telout.println(dni); // Escribir el mensaje en el PrintWriter usando println
-        }
-        //System.out.println(dni);
-    } catch (IOException ex) {
-        Logger.getLogger(ClienteHandler.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (Exception ex) {
-        Logger.getLogger(ClienteHandler.class.getName()).log(Level.SEVERE, null, ex);
-    }
-} */
+    
     
     
     public void enviarDatosAlTelevisor(ArrayList<String> lista1, ArrayList<String> lista2,Socket socket) {

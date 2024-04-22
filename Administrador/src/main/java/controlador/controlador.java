@@ -14,13 +14,13 @@ import vista.Ventana_Estadisticas;
  *
  * @author ignacio
  */
-public class controlador implements ActionListener{
+public class Controlador implements ActionListener{
  
     private IVista vista;
     Administrador admin;
     
     
-    public controlador(Administrador adm){
+    public Controlador(Administrador adm){
         this.admin=adm;
         vista=new Ventana_Estadisticas();
        

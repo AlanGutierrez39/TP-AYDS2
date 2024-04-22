@@ -9,7 +9,10 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -20,22 +23,25 @@ import java.util.ArrayList;
 public class Televisor {
 
    ArrayList<String> dnis=new ArrayList<String>();
+   Socket socket;
+   BufferedReader entrada;
+   BufferedWriter salida;
+   private ObjectOutputStream oos;
+   private ObjectInputStream ois;
+   
    public Televisor(Socket socket){
         try{
             this.socket=socket;
             this.salida=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.entrada=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.oos=new ObjectOutputStream(socket.getOutputStream());
+            this.ois=new ObjectInputStream(socket.getInputStream());
         }catch(IOException e){
             
         }
     
     }
-    
-    
-    Socket socket;
-    BufferedReader entrada;
-    BufferedWriter salida;
-    
+
     public void iniciar() {
         ControladorTelevisor controladorTelevisor=new ControladorTelevisor(this);
         controladorTelevisor.ejecutar();
@@ -46,7 +52,8 @@ public class Televisor {
         try{
             this.salida.write("televisor" + "\n"); // Agrega un salto de línea al final del mensaje
             this.salida.flush(); // Asegúrate de que el mensaje se envíe inmediatamente
-            
+            this.oos.writeObject(this);
+            this.oos.flush();
         }catch(Exception e){
             
         }

@@ -7,6 +7,8 @@ package controlador;
 import modelo.Empleado;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+
 import vista.IVista;
 import vista.Ventana_Operador;
 
@@ -14,8 +16,12 @@ import vista.Ventana_Operador;
  *
  * @author ignacio
  */
-public class ControladorEmpleado implements ActionListener{
-    private IVista vista;
+public class ControladorEmpleado implements ActionListener, Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private IVista vista;
     Empleado empleado;
     
     

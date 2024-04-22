@@ -15,9 +15,8 @@ import servidor.Servidor;
 public class Main {
     
     public static void main(String[] args) throws IOException {
-    ServerSocket serverSocket=new ServerSocket(1234);
-    Servidor servidor=new Servidor(serverSocket);
-    servidor.iniciar();
+    Servidor servidor=new Servidor();
+    servidor.run();
     }
    
     

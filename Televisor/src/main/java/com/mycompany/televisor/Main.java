@@ -5,7 +5,6 @@
 package com.mycompany.televisor;
 
 import java.io.IOException;
-import java.net.Socket;
 
 
 /**
@@ -14,9 +13,8 @@ import java.net.Socket;
  */
 public class Main {
      public static void main(String[] args) throws IOException {
-         
-        Socket socket=new Socket("localhost",1234);
-        Televisor televisor = new Televisor(socket);
+        
+        Televisor televisor = new Televisor();
         televisor.iniciar();
      }
 }

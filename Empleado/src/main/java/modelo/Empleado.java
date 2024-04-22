@@ -6,6 +6,7 @@ package modelo;
 
 import controlador.ControladorEmpleado;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -14,10 +15,9 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import vista.Ventana_Operador;
 
 /**
  *
@@ -28,65 +28,95 @@ public class Empleado implements Serializable{
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2179221794384146037L;
 
 	public Empleado(){}
     
-    int puerto = 1234;
-    String ip = "localhost"; // Cambia esto a la dirección IP del servidor
-	private Socket socket;
-	private ObjectOutputStream oos;
-	private BufferedReader in;
-	private PrintWriter out;
-	private ObjectInputStream ois;
+    private transient BufferedReader entrada;
+    private transient BufferedWriter salida;
+    private transient SocketEmpleado nuevo;
     private int puesto;
+    private String dni;
+    private ArrayList<String> dnis=new ArrayList<String>();
     
     public void iniciar() {
         ControladorEmpleado controladorEmpleado=new ControladorEmpleado(this);
         controladorEmpleado.ejecutar();
+        nuevo = new SocketEmpleado();
     }
-    
     
     public void ingresa(){
     	try{
-            abrirConexion(ip, puerto);
-            System.out.println("Conexion establecida");
-            System.out.println("Enviando datos");
-            recibirDatos();
-            System.out.println("esperando respuesta");
-            //out.println("1");
-            System.out.println("Respuesta recibida");
+            nuevo.envio(this, "empleado");
         }catch(Exception e){
             
-        }finally{
-        	cerrarConexion();
         }
     }
     
-    private void abrirConexion(String ip,int puerto) throws IOException{
-        this.socket=new Socket(ip,puerto);
-        this.oos=new ObjectOutputStream(socket.getOutputStream());
-        this.in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.out=new PrintWriter(socket.getOutputStream(),true);
-        this.ois=new ObjectInputStream(socket.getInputStream());  
-    }
-    private void cerrarConexion(){
-        try {
-            socket.close();
-            oos.close();
-            in.close();
-            out.close();
-            ois.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    private void recibirDatos() throws IOException, ClassNotFoundException{
-        //System.out.println("llega1");
-        //out.println(mensaje);
-        //out.flush();
-        ois.readObject();
-        System.out.println("llega2");
-        System.out.println("datos recibidos");
-    }
+	public int getPuesto() {
+		return puesto;
+	}
+
+	public void setPuesto(int puesto) {
+		this.puesto = puesto;
+	}
+
+
+	public String getDni() {
+		return dni;
+	}
+
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public BufferedReader getEntrada() {
+		return entrada;
+	}
+
+
+	public void setEntrada(BufferedReader entrada) {
+		this.entrada = entrada;
+	}
+
+
+	public BufferedWriter getSalida() {
+		return salida;
+	}
+
+
+	public void setSalida(BufferedWriter salida) {
+		this.salida = salida;
+	}
+
+
+	public SocketEmpleado getNuevo() {
+		return nuevo;
+	}
+
+
+	public void setNuevo(SocketEmpleado nuevo) {
+		this.nuevo = nuevo;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Empleado [puesto=" + puesto + ", dni=" + dni + "]";
+	}
+
+	public ArrayList<String> getDnis() {
+		return dnis;
+	}
+
+	public void setDnis(ArrayList<String> dnis) {
+		this.dnis = dnis;
+	}
+    
 }

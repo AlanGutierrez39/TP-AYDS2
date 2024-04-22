@@ -35,6 +35,7 @@ public class ControladorEmpleado implements ActionListener, Serializable{
     
     public void ejecutar(){
         vista.ejecutar();
+        this.empleado.ingresa();
     }
     
     

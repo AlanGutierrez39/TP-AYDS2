@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import modelo.Constantes;
 import modelo.Empleado;
 import modelo.Totem;
+//import modelo.Administrador;
 
 /**
  *
@@ -33,22 +34,53 @@ public class Servidor extends Thread implements Serializable{
             while (!server.isClosed()) {
                 DatosConexion datos=new DatosConexion(server.accept());
                 Object obj=datos.ois.readObject();
+                System.out.println(datos.ois);
                 if(obj instanceof Totem){
                     Totem totem=(Totem)obj;
-                    System.out.println(totem.getDni());
                     this.dnis.add(totem.getDni());
+                    /*for (int i = 0; i < this.dnis.size(); i++) {
+						System.out.println(this.dnis.get(i));
+					}*/
                 }
                 else if(obj instanceof Televisor){
                     Televisor televisor = (Televisor) obj;
-                    
+                    if (this.dnis.size()>0) {
+						datos.oos.writeObject(this.dnis.get(this.dnis.size()));
+						datos.oos.flush();
+						System.out.println("llega2");
+	                    System.out.println("datos enviados: objeto:"+obj);
+	                    datos.out.println("dni");
+					}
+                    System.out.println("llega2");
                 }else if(obj instanceof Empleado){
                     Empleado empleado = (Empleado) obj;
-                    datos.oos.writeObject(this.dnis.get(this.dnis.size()));
+                    datos.oos.writeObject(this.dnis);
                     datos.oos.flush();
                     System.out.println("llega2");
                     System.out.println("datos enviados: objeto:"+obj);
                     datos.out.println("dni");
-                }
+                }/*else if(obj instanceof Administrador){
+                	Administrador administrador = (Administrador) obj;
+                }*/
+                /*else if(obj instanceof Televisor){
+                    Televisor televisor = (Televisor) obj;
+                    datos.oos.writeObject(this.dnis.get(0));
+                    datos.oos.flush();
+                    System.out.println("llega2");
+                    System.out.println("datos enviados: objeto:"+obj);
+                    datos.out.println("dni");
+                }else if(obj instanceof Empleado){
+                    Empleado empleado = (Empleado) obj;
+                    //empleado.setPuesto(1);
+                    empleado.setDni(this.dnis.get(0));
+                    System.out.println(empleado);
+                    this.dnis.remove(0);
+                    datos.oos.writeObject(empleado);
+                    datos.oos.flush();
+                    System.out.println("llega2");
+                    System.out.println("datos enviados: objeto:"+empleado);
+                    datos.out.println("dni");
+                }*/
             } 
         } catch (Exception ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,4 +92,8 @@ public class Servidor extends Thread implements Serializable{
     public void cerrarsocket(){
     
     }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+    
 }

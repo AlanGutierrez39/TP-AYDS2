@@ -7,8 +7,8 @@ package controlador;
 import com.mycompany.televisor.Televisor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
-import vista.IVista;
 import vista.Ivista_turnos;
 import vista.Ventana_Turnos;
 
@@ -16,8 +16,12 @@ import vista.Ventana_Turnos;
  *
  * @author ignacio
  */
-public class ControladorTelevisor implements ActionListener{
-    private Ivista_turnos vista;
+public class ControladorTelevisor implements ActionListener, Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1684508436196287600L;
+	private Ivista_turnos vista;
     Televisor televisor;
     
     

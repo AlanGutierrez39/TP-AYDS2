@@ -41,6 +41,7 @@ public class Televisor implements Serializable{
     
     public void comienza(){
     	nuevo.envio(this, "Televisor");
+    	this.dnis = nuevo.recepcion(this, "Televisor");
     }
     
 	public ArrayList<String> getDnis() {

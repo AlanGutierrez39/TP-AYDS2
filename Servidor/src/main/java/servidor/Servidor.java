@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import modelo.Constantes;
 import modelo.Empleado;
 import modelo.Totem;
-//import modelo.Administrador;
+import modelo.Administrador;
 
 /**
  *
@@ -21,7 +21,9 @@ import modelo.Totem;
 public class Servidor extends Thread implements Serializable{
    
     ArrayList<String> dnis=new ArrayList<String>();
+    ArrayList<String> personasAtendidas=new ArrayList<String>();
     ArrayList<String> boxes=new ArrayList<String>();
+    private long tiempo = System.currentTimeMillis(); 
     private static final long serialVersionUID = 4209360273818925922L;
     
     public Servidor(){
@@ -30,7 +32,7 @@ public class Servidor extends Thread implements Serializable{
     public void run(){
         try {
             ServerSocket server = new ServerSocket(Constantes.PUERTO);
-           
+            int vecesEmpleado =0;
             while (!server.isClosed()) {
                 DatosConexion datos=new DatosConexion(server.accept());
                 Object obj=datos.ois.readObject();
@@ -38,14 +40,11 @@ public class Servidor extends Thread implements Serializable{
                 if(obj instanceof Totem){
                     Totem totem=(Totem)obj;
                     this.dnis.add(totem.getDni());
-                    /*for (int i = 0; i < this.dnis.size(); i++) {
-						System.out.println(this.dnis.get(i));
-					}*/
                 }
                 else if(obj instanceof Televisor){
                     Televisor televisor = (Televisor) obj;
                     if (this.dnis.size()>0) {
-						datos.oos.writeObject(this.dnis.get(this.dnis.size()));
+						datos.oos.writeObject(this.personasAtendidas.get(this.personasAtendidas.size()));
 						datos.oos.flush();
 						System.out.println("llega2");
 	                    System.out.println("datos enviados: objeto:"+obj);
@@ -54,14 +53,28 @@ public class Servidor extends Thread implements Serializable{
                     System.out.println("llega2");
                 }else if(obj instanceof Empleado){
                     Empleado empleado = (Empleado) obj;
-                    datos.oos.writeObject(this.dnis);
+                    if (!this.dnis.isEmpty()) {
+                    	vecesEmpleado++;
+	                    for (int i = 0; i < this.dnis.size(); i++) {
+							System.out.println(this.dnis.get(i));
+						}
+	                    if (vecesEmpleado != 1){
+	                    	this.personasAtendidas.add(this.dnis.get(0));
+	                    	this.dnis.remove(0);
+	                    }
+                    }
+                    else
+                    	vecesEmpleado = 0;
+                    empleado.setDnis(this.dnis);
+                    datos.oos.writeObject(empleado);
                     datos.oos.flush();
+                    System.out.println(empleado);
                     System.out.println("llega2");
                     System.out.println("datos enviados: objeto:"+obj);
-                    datos.out.println("dni");
-                }/*else if(obj instanceof Administrador){
+                    datos.out.println("dnis");
+                }else if(obj instanceof Administrador){
                 	Administrador administrador = (Administrador) obj;
-                }*/
+                }
                 /*else if(obj instanceof Televisor){
                     Televisor televisor = (Televisor) obj;
                     datos.oos.writeObject(this.dnis.get(0));

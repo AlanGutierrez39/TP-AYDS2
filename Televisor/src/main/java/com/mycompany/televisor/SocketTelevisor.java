@@ -64,21 +64,32 @@ public class SocketTelevisor implements Serializable{
             this.out.flush();
 		}
 
-
-		/*public void comienza(){
+	    public ArrayList<String> recepcion(Object objeto,String mensaje){
+	        ArrayList<String> dnis = null;
 	        try{
-	            this.salida.write("televisor" + "\n"); // Agrega un salto de línea al final del mensaje
-	            this.salida.flush(); // Asegúrate de que el mensaje se envíe inmediatamente
-	            System.out.println(this.salida);
-	            this.out.println(this.salida);
-	            this.out.flush();
-	            this.oos.writeObject(this);
-	            this.oos.flush();
+	            Object objetoARecibir;
+	        	System.out.println("esperando respuesta");
+	            out.println(mensaje);
+	            System.out.println("Respuesta recibida");
+	            //recibirDatos(objetoARecibir);
+	            objetoARecibir = ois.readObject();
+	            //System.out.println(objeto);
+	            System.out.println("llega2");
+	            System.out.println("datos recibidos");
+	            //System.out.println(objetoARecibir);
+	            if(objetoARecibir instanceof ArrayList){
+	                //Empleado empleado = (Empleado) objetoARecibir;
+	                dnis = (ArrayList<String>) objetoARecibir;
+	                System.out.println(dnis);
+	            }
 	        }catch(Exception e){
 	            
+	        }finally{
+	        	cerrarConexion();
 	        }
-	        
-	    }*/
+			return dnis;
+	    }
+	    
 	    private void cerrarConexion(){
 	        try {
 	            socket.close();

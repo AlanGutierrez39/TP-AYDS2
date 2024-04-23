@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,19 +29,39 @@ public class SocketEmpleado implements Serializable {
     public void envio(Object objeto,String mensaje){
         try{
         	System.out.println(objeto);
-        	this.abrirConexion(mensaje, puerto);
+        	this.abrirConexion(ip, puerto);
         	System.out.println("Conexion establecida");
             System.out.println("Enviando datos");
             enviarDatos(objeto,mensaje);
-            System.out.println("esperando respuesta");
+        }catch(Exception e){
+            
+        }
+    }
+    
+    public ArrayList<String> recepcion(Object objeto,String mensaje){
+        ArrayList<String> dnis = null;
+        try{
+            Object objetoARecibir;
+        	System.out.println("esperando respuesta");
             out.println(mensaje);
             System.out.println("Respuesta recibida");
-            recibirDatos(objeto);
+            //recibirDatos(objetoARecibir);
+            objetoARecibir = ois.readObject();
+            //System.out.println(objeto);
+            System.out.println("llega2");
+            System.out.println("datos recibidos");
+            //System.out.println(objetoARecibir);
+            if(objetoARecibir instanceof Empleado){
+                Empleado empleado = (Empleado) objetoARecibir;
+                dnis = empleado.getDnis();
+                System.out.println(dnis);
+            }
         }catch(Exception e){
             
         }finally{
         	cerrarConexion();
         }
+		return dnis;
     }
     
     private void abrirConexion(String ip,int puerto) throws IOException{

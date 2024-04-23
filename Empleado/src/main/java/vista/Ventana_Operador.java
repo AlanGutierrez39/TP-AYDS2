@@ -7,6 +7,8 @@ package vista;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowListener;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -51,7 +53,7 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
         jLabel2.setText("Siguiente cliente");
 
         jList1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList1.setModel(new javax.swing.DefaultListModel<String>() {
             String[] strings = { "42676725" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -193,5 +195,12 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
 	public void setKeyListener() {
 	}
 
-    
+	public javax.swing.JList<String> getjList1() {
+		return jList1;
+	}
+
+	public void setjList1(javax.swing.JList<String> jList1) {
+		this.jList1 = jList1;
+	}
+
 }

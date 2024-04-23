@@ -28,9 +28,9 @@ public class Administrador implements Serializable{
    }
 
     public void iniciar() {
+        this.nuevo = new SocketAdministrador();
         Controlador controlador=new Controlador(this);
         controlador.ejecutar();
-        this.nuevo = new SocketAdministrador();
     }
     
     public void comienza(){

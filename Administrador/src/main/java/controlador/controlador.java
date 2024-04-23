@@ -30,6 +30,7 @@ public class Controlador implements ActionListener{
     
     public void ejecutar(){
         vista.ejecutar();
+        admin.comienza();
     }
     
     

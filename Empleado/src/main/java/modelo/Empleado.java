@@ -40,14 +40,15 @@ public class Empleado implements Serializable{
     private ArrayList<String> dnis=new ArrayList<String>();
     
     public void iniciar() {
+        nuevo = new SocketEmpleado();
         ControladorEmpleado controladorEmpleado=new ControladorEmpleado(this);
         controladorEmpleado.ejecutar();
-        nuevo = new SocketEmpleado();
     }
     
     public void ingresa(){
     	try{
             nuevo.envio(this, "empleado");
+            this.dnis = nuevo.recepcion(this, "empleado");
         }catch(Exception e){
             
         }
@@ -108,7 +109,7 @@ public class Empleado implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Empleado [puesto=" + puesto + ", dni=" + dni + "]";
+		return "Empleado [puesto=" + puesto + ", dnis=" + dnis + "]";
 	}
 
 	public ArrayList<String> getDnis() {

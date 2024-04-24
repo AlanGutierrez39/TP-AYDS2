@@ -7,6 +7,7 @@ package modelo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import controlador.Controlador;
 
@@ -22,6 +23,9 @@ public class Administrador implements Serializable{
     private transient BufferedReader entrada;
     private transient BufferedWriter salida;
     private transient SocketAdministrador nuevo;
+    private String tiempo;
+    private String tiempoPromedio;
+    private int personasAtendidas;
    
    public Administrador() {
 	super();
@@ -35,7 +39,12 @@ public class Administrador implements Serializable{
     
     public void comienza(){
     	try{
-            nuevo.envio(this, "administrador");
+            Administrador adm;
+    		nuevo.envio(this, "administrador");
+            adm = nuevo.recepcion(this, "administrador");
+            this.setTiempo(adm.getTiempo());
+            this.setTiempoPromedio(adm.getTiempoPromedio());
+            this.setPersonasAtendidas(adm.getPersonasAtendidas());
         }catch(Exception e){
             
         }
@@ -66,8 +75,38 @@ public class Administrador implements Serializable{
 		this.nuevo = nuevo;
 	}
 
+	public String getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(String tiempoActual) {
+		this.tiempo = tiempoActual;
+	}
+
+	public String getTiempoPromedio() {
+		return tiempoPromedio;
+	}
+
+	public void setTiempoPromedio(String tiempoPromedio) {
+		this.tiempoPromedio = tiempoPromedio;
+	}
+
+	public int getPersonasAtendidas() {
+		return personasAtendidas;
+	}
+
+	public void setPersonasAtendidas(int personasAtendidas) {
+		this.personasAtendidas = personasAtendidas;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Administrador [tiempo=" + tiempo + ", tiempoPromedio=" + tiempoPromedio + ", personasAtendidas="
+				+ personasAtendidas + "]";
 	}
     
 }

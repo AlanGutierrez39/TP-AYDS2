@@ -11,4 +11,11 @@
         <maven.compiler.target>22</maven.compiler.target>
         <exec.mainClass>com.mycompany.televisor.Televisor</exec.mainClass>
     </properties>
+    <dependencies>
+    	<dependency>
+    		<groupId>com.mycompany</groupId>
+    		<artifactId>Empleado</artifactId>
+    		<version>1.0-SNAPSHOT</version>
+    	</dependency>
+    </dependencies>
 </project>

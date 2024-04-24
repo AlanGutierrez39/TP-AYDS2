@@ -5,6 +5,7 @@
 package com.mycompany.televisor;
 
 import controlador.ControladorTelevisor;
+import modelo.Empleado;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Televisor implements Serializable{
 	 */
 	private static final long serialVersionUID = -8432622592732844803L;
 	private ArrayList<String> dnis=new ArrayList<String>();
+	private ArrayList<String> boxes=new ArrayList<String>();
    private transient BufferedReader entrada;
    private transient BufferedWriter salida;
    private transient SocketTelevisor nuevo;
@@ -40,8 +42,11 @@ public class Televisor implements Serializable{
     }
     
     public void comienza(){
+    	Empleado empleado;
     	nuevo.envio(this, "Televisor");
-    	this.dnis = nuevo.recepcion(this, "Televisor");
+    	empleado = nuevo.recepcion(this, "Televisor");
+    	this.dnis.add(empleado.getDni());
+    	this.boxes.add(Integer.toString(empleado.getPuesto()));
     }
     
 	public ArrayList<String> getDnis() {
@@ -78,6 +83,14 @@ public class Televisor implements Serializable{
 
 	public void setNuevo(SocketTelevisor nuevo) {
 		this.nuevo = nuevo;
+	}
+
+	public ArrayList<String> getBoxes() {
+		return boxes;
+	}
+
+	public void setBoxes(ArrayList<String> boxes) {
+		this.boxes = boxes;
 	}
 	
 }

@@ -36,6 +36,7 @@ public class ControladorTelevisor implements ActionListener, Serializable{
     public void ejecutar(){
         this.vista.ejecutar();
         televisor.comienza();
+        this.vista.actualiza(this.televisor.getDnis(), this.televisor.getBoxes());
     }
     
     

@@ -212,8 +212,10 @@ public class Ventana_Turnos extends javax.swing.JFrame implements Ivista_turnos{
             modelodnis.clear();
 		for(int i=0;i<dnis.size();i++)
 			modelodnis.add(i,dnis.get(i));
-                for(int i=0;i<boxes.size();i++)
+		dnislist.setModel(modeloboxes);
+		for(int i=0;i<boxes.size();i++)
 			modeloboxes.add(i,boxes.get(i));
+		Boxlist.setModel(modeloboxes);
         }
        
 }

@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,13 +47,8 @@ public class SocketAdministrador implements Serializable {
 	        	System.out.println("Conexion establecida");
 	            System.out.println("Enviando datos");
 	            enviarDatos(objeto,mensaje);
-	            System.out.println("esperando respuesta");
-	            out.println(mensaje);
-	            System.out.println("Respuesta recibida");
 	        }catch(Exception e){
 	            
-	        }finally{
-	        	cerrarConexion();
 	        }
 	    }
 	    private void enviarDatos(Object objeto, String mensaje) throws IOException {
@@ -64,7 +60,28 @@ public class SocketAdministrador implements Serializable {
             this.out.println(this.salida);
             this.out.flush();
 		}
-
+	    
+	    public Administrador recepcion(Object objeto,String mensaje){
+	        Administrador adm = null;
+	        try{
+	            Object objetoARecibir;
+	        	System.out.println("esperando respuesta");
+	            out.println(mensaje);
+	            System.out.println("Respuesta recibida");
+	            objetoARecibir = ois.readObject();
+	            System.out.println("llega2");
+	            System.out.println("datos recibidos");
+	            if(objetoARecibir instanceof Administrador){
+	                adm = (Administrador) objetoARecibir;
+	                System.out.println(adm);
+	            }
+	        }catch(Exception e){
+	            
+	        }finally{
+	        	cerrarConexion();
+	        }
+			return adm;
+	    }
 	    private void cerrarConexion(){
 	        try {
 	            socket.close();

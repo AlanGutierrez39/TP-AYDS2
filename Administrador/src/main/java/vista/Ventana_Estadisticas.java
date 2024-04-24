@@ -9,6 +9,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Dimension;
 
 /**
  *
@@ -33,63 +40,45 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jList1 = new javax.swing.JList<>();
+        this.jPanel1.setBackground(new Color(153, 153, 255));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList2.setBackground(new java.awt.Color(153, 153, 255));
-        jList2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "5", "5:25", "6:55:34", "6", "9", ".", ".", ".", ".", ".", ".", ".", ".", "." };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList2.setFixedCellHeight(50);
-        jList2.setFixedCellWidth(100);
-        jScrollPane2.setViewportView(jList2);
-
-        jList1.setBackground(new java.awt.Color(153, 153, 255));
-        jList1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Personas atendidas", "Tiempo promedio por persona", "Tiempo desde tu clockin", "Encuestas realizadas", "Ventas realizadas", ".", ".", ".", ".", "." };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setFixedCellHeight(50);
-        jList1.setFixedCellWidth(100);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jList1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
-            .addComponent(jList1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(this.jPanel1, GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(this.jPanel1, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
+        getContentPane().setLayout(layout);
+        this.jPanel1.setLayout(new GridLayout(4, 2, 0, 0));
+        
+        this.personasAtendidasLabel = new JLabel("Personas atendidas");
+        this.personasAtendidasLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        this.jPanel1.add(this.personasAtendidasLabel);
+        
+        this.cantPersonasAtendidasLabel = new JLabel("5");
+        this.cantPersonasAtendidasLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        this.jPanel1.add(this.cantPersonasAtendidasLabel);
+        
+        this.tiempoPromedioLabel = new JLabel("Tiempo promedio por persona");
+        this.tiempoPromedioLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        this.jPanel1.add(this.tiempoPromedioLabel);
+        
+        this.cantTPLabel = new JLabel("5:25");
+        this.cantTPLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        this.jPanel1.add(this.cantTPLabel);
+        
+        this.tiempoLabel = new JLabel("Tiempo desde tu clockin");
+        this.tiempoLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        this.jPanel1.add(this.tiempoLabel);
+        
+        this.cantTiempoLabel = new JLabel("6:55:34");
+        this.cantTiempoLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        this.jPanel1.add(this.cantTiempoLabel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,12 +118,13 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private JLabel personasAtendidasLabel;
+    private JLabel cantPersonasAtendidasLabel;
+    private JLabel tiempoPromedioLabel;
+    private JLabel cantTPLabel;
+    private JLabel tiempoLabel;
+    private JLabel cantTiempoLabel;
     // End of variables declaration//GEN-END:variables
 
 @Override
@@ -180,4 +170,53 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
 	
 	public void setKeyListener() {
 	}
+
+	public JLabel getPersonasAtendidasLabel() {
+		return personasAtendidasLabel;
+	}
+
+	public void setPersonasAtendidasLabel(JLabel personasAtendidasLabel) {
+		this.personasAtendidasLabel = personasAtendidasLabel;
+	}
+
+	public JLabel getCantPersonasAtendidasLabel() {
+		return cantPersonasAtendidasLabel;
+	}
+
+	public void setCantPersonasAtendidasLabel(JLabel cantPersonasAtendidasLabel) {
+		this.cantPersonasAtendidasLabel = cantPersonasAtendidasLabel;
+	}
+
+	public JLabel getTiempoPromedioLabel() {
+		return tiempoPromedioLabel;
+	}
+
+	public void setTiempoPromedioLabel(JLabel tiempoPromedioLabel) {
+		this.tiempoPromedioLabel = tiempoPromedioLabel;
+	}
+
+	public JLabel getCantTPLabel() {
+		return cantTPLabel;
+	}
+
+	public void setCantTPLabel(JLabel cantTPLabel) {
+		this.cantTPLabel = cantTPLabel;
+	}
+
+	public JLabel getTiempoLabel() {
+		return tiempoLabel;
+	}
+
+	public void setTiempoLabel(JLabel tiempoLabel) {
+		this.tiempoLabel = tiempoLabel;
+	}
+
+	public JLabel getCantTiempoLabel() {
+		return cantTiempoLabel;
+	}
+
+	public void setCantTiempoLabel(JLabel cantTiempoLabel) {
+		this.cantTiempoLabel = cantTiempoLabel;
+	}
+	
 }

@@ -10,9 +10,10 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import modelo.Empleado;
 
 public class SocketTelevisor implements Serializable{
 
@@ -50,8 +51,6 @@ public class SocketTelevisor implements Serializable{
 	            System.out.println("Respuesta recibida");
 	        }catch(Exception e){
 	            
-	        }finally{
-	        	cerrarConexion();
 	        }
 	    }
 	    private void enviarDatos(Object objeto, String mensaje) throws IOException {
@@ -64,8 +63,8 @@ public class SocketTelevisor implements Serializable{
             this.out.flush();
 		}
 
-	    public ArrayList<String> recepcion(Object objeto,String mensaje){
-	        ArrayList<String> dnis = null;
+	    public Empleado recepcion(Object objeto,String mensaje){
+	    	Empleado empleado = null;
 	        try{
 	            Object objetoARecibir;
 	        	System.out.println("esperando respuesta");
@@ -77,17 +76,16 @@ public class SocketTelevisor implements Serializable{
 	            System.out.println("llega2");
 	            System.out.println("datos recibidos");
 	            //System.out.println(objetoARecibir);
-	            if(objetoARecibir instanceof ArrayList){
-	                //Empleado empleado = (Empleado) objetoARecibir;
-	                dnis = (ArrayList<String>) objetoARecibir;
-	                System.out.println(dnis);
+	            if(objetoARecibir instanceof Empleado){
+	                empleado = (Empleado) objetoARecibir;
+	                System.out.println(empleado);
 	            }
 	        }catch(Exception e){
 	            
 	        }finally{
 	        	cerrarConexion();
 	        }
-			return dnis;
+			return empleado;
 	    }
 	    
 	    private void cerrarConexion(){

@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Timer;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -170,13 +172,14 @@ public class Ventana_Turnos extends javax.swing.JFrame implements Ivista_turnos{
 
  	@Override
  	public void setWindowListener(WindowListener controlador) {
- 		// TODO Auto-generated method stub
  		
  	}
         
  	@Override
  	public void ejecutar() {
  	setTitle("vista televisor");
+ 	dnislist.setModel(modelodnis);
+ 	Boxlist.setModel(modeloboxes);
         pack();
          setVisible(true);
          setLocationRelativeTo(null);	
@@ -207,15 +210,13 @@ public class Ventana_Turnos extends javax.swing.JFrame implements Ivista_turnos{
 	   
 	}
         
-        public void actualiza(ArrayList<String> dnis,ArrayList<String> boxes){
-            modeloboxes.clear();
-            modelodnis.clear();
-		for(int i=0;i<dnis.size();i++)
-			modelodnis.add(i,dnis.get(i));
-		dnislist.setModel(modeloboxes);
-		for(int i=0;i<boxes.size();i++)
-			modeloboxes.add(i,boxes.get(i));
-		Boxlist.setModel(modeloboxes);
+    public void actualiza(String dni,String box){
+    		modelodnis.add(modelodnis.size(),dni);
+			modeloboxes.add(modeloboxes.size(),box);
         }
        
+    public void remove() {
+    	modelodnis.remove(0);
+    	modeloboxes.remove(0);
+    }
 }

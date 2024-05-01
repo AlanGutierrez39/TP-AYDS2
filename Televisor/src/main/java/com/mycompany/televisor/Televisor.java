@@ -36,17 +36,14 @@ public class Televisor implements Serializable{
     }
 
     public void iniciar() {
-        this.nuevo = new SocketTelevisor();
         ControladorTelevisor controladorTelevisor=new ControladorTelevisor(this);
+        this.nuevo = new SocketTelevisor(controladorTelevisor);
         controladorTelevisor.ejecutar();
     }
     
     public void comienza(){
-    	Empleado empleado;
     	nuevo.envio(this, "Televisor");
-    	empleado = nuevo.recepcion(this, "Televisor");
-    	this.dnis.add(empleado.getDni());
-    	this.boxes.add(Integer.toString(empleado.getPuesto()));
+    	
     }
     
 	public ArrayList<String> getDnis() {

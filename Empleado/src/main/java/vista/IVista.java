@@ -19,8 +19,4 @@ public interface IVista {
     void lanzarVentanaEmergente(String mensaje);
     
     void setKeyListener();
-    
-    javax.swing.JList<String> getjList1();
-    
-    void setjList1(javax.swing.JList<String> jList1);
 }

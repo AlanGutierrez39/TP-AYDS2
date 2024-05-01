@@ -134,7 +134,6 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
 
  	@Override
  	public void setWindowListener(WindowListener controlador) {
- 		// TODO Auto-generated method stub
  		
  	}
 
@@ -161,7 +160,6 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
  	}
 
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	public void keyReleased(KeyEvent e) {

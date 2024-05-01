@@ -22,7 +22,7 @@ public class SocketAdministrador implements Serializable {
 	private static final long serialVersionUID = 649391259069756428L;
 
 	public SocketAdministrador() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	Socket socket;
 	BufferedReader entrada;

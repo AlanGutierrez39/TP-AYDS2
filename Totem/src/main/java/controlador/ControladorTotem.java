@@ -46,7 +46,6 @@ public class ControladorTotem implements ActionListener,Serializable{
     public void actionPerformed(ActionEvent e){
         switch (e.getActionCommand()) {
             case "INGRESAR":
-                System.out.println("controlador.ControladorTotem.actionPerformed()");
                 totem.ingresa(vistalogin.getDnioid());
                 vistalogin.cerrarVentana();
                 vistaprincipal.ejecutar();

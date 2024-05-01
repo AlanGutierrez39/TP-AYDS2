@@ -38,4 +38,8 @@ public class DatosConexion {
         }
         
     }
+    
+    public Socket getSocket() {
+    	return this.socket;
+    }
 }

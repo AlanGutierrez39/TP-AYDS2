@@ -16,6 +16,7 @@ import modelo.Constantes;
 import modelo.Empleado;
 import modelo.Totem;
 import modelo.Administrador;
+import java.net.Socket;
 
 /**
  *
@@ -23,77 +24,36 @@ import modelo.Administrador;
  */
 public class Servidor extends Thread implements Serializable{
    
-    ArrayList<String> dnis=new ArrayList<String>();
-    ArrayList<String> personasAtendidas=new ArrayList<String>();
-    ArrayList<String> boxes=new ArrayList<String>();
+
     private LocalDateTime tiempo = LocalDateTime.now();
     private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private static final long serialVersionUID = 4209360273818925922L;
+    private ColasManager manager=new ColasManager();
     
     public Servidor(){
-     
+    	
     }
     public void run(){
         try {
             ServerSocket server = new ServerSocket(Constantes.PUERTO);
-            int vecesEmpleado =0;
             while (!server.isClosed()) {
                 DatosConexion datos=new DatosConexion(server.accept());
                 Object obj=datos.ois.readObject();
-                System.out.println(datos.ois);
                 if(obj instanceof Totem){
                     Totem totem=(Totem)obj;
-                    this.dnis.add(totem.getDni());
+                    manager.newCliente(totem.getDni());
                 }
                 else if(obj instanceof Televisor){
-                    Televisor televisor = (Televisor) obj;
-                    if (this.dnis.size()>0) {
-                    	Empleado empleado = new Empleado();
-                    	empleado.setDni(this.personasAtendidas.get(this.personasAtendidas.size()));
-                    	empleado.setPuesto(Integer.parseInt(this.boxes.get(this.boxes.size())));
-                    	datos.oos.writeObject(empleado);
-						datos.oos.flush();
-						System.out.println("llega2");
-	                    System.out.println("datos enviados: objeto:"+obj);
-	                    datos.out.println("dni");
-					}
-                    System.out.println("llega2");
+                    manager.creaTele(datos);
                 }else if(obj instanceof Empleado){
                     Empleado empleado = (Empleado) obj;
-                    if (!this.dnis.isEmpty()) {
-                    	vecesEmpleado++;
-	                    for (int i = 0; i < this.dnis.size(); i++) {
-							System.out.println(this.dnis.get(i));
-						}
-	                    if (vecesEmpleado != 1){
-	                    	this.personasAtendidas.add(this.dnis.get(0));
-	                    	this.dnis.remove(0);
-	                    	this.boxes.add(Integer.toString(empleado.getPuesto()));
-	                    	if (this.dnis.isEmpty())
-	                        	vecesEmpleado = 0;
-	                    }
-                    }
-                    else
-                    	vecesEmpleado = 0;
-                    empleado.setDnis(this.dnis);
-                    datos.oos.writeObject(empleado);
-                    datos.oos.flush();
-                    System.out.println(empleado);
-                    System.out.println("llega2");
-                    System.out.println("datos enviados: objeto:"+obj);
-                    datos.out.println("dnis");
+                    String msg=datos.in.readLine();
+                    if(msg.equalsIgnoreCase("nuevo")) 
+                    	manager.newBox(datos);
+                    else 
+                    	manager.llamaCliente(String.valueOf(empleado.getPuesto()));    	        	
                 }else if(obj instanceof Administrador){
-                	Administrador administrador = (Administrador) obj;
-                	String tiempoActual = calculaTiempo();
-                	administrador.setTiempo(tiempoActual);
-                	administrador.setPersonasAtendidas(this.personasAtendidas.size());
-                	administrador.setTiempoPromedio(calculaTiempoPromedio(this.personasAtendidas.size()));
-                	System.out.println(administrador);
-                	datos.oos.writeObject(administrador);
-                    datos.oos.flush();
-                    System.out.println("llega2");
-                    System.out.println("datos enviados: objeto:"+obj);
-                    datos.out.println("dnis");
+                	
                 }
             } 
         } catch (Exception ex) {

@@ -36,7 +36,6 @@ public class ControladorTelevisor implements ActionListener, Serializable{
     public void ejecutar(){
         this.vista.ejecutar();
         televisor.comienza();
-        this.vista.actualiza(this.televisor.getDnis(), this.televisor.getBoxes());
     }
     
     
@@ -45,7 +44,11 @@ public class ControladorTelevisor implements ActionListener, Serializable{
         
     }
     
-    public void Actualiza(ArrayList<String> dnis,ArrayList<String> boxes){
-        vista.actualiza(dnis, boxes);
+    public void Actualiza(String dni,String box){
+    	vista.actualiza(dni, box);
+    }
+    
+    public void eliminaprimero() {
+    	vista.remove();
     }
 }

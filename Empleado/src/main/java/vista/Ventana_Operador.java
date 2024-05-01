@@ -37,8 +37,6 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
         jPanel1 = new javax.swing.JPanel();
         llamarclientebutton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,15 +50,8 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel2.setText("Siguiente cliente");
 
-        jList1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jList1.setModel(new javax.swing.DefaultListModel<String>() {
-            String[] strings = { "42676725" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setAlignmentX(1.0F);
-        jList1.setAlignmentY(1.0F);
-        jScrollPane1.setViewportView(jList1);
+       
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,8 +64,7 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(llamarclientebutton, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(llamarclientebutton, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
                 .addGap(145, 145, 145))
         );
         jPanel1Layout.setVerticalGroup(
@@ -83,7 +73,6 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(llamarclientebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(90, Short.MAX_VALUE))
@@ -145,9 +134,7 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton llamarclientebutton;
     // End of variables declaration//GEN-END:variables
 
@@ -158,7 +145,6 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
 
  	@Override
  	public void setWindowListener(WindowListener controlador) {
- 		// TODO Auto-generated method stub
  		
  	}
 
@@ -185,7 +171,6 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
  	}
 
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	public void keyReleased(KeyEvent e) {
@@ -195,12 +180,6 @@ public class Ventana_Operador extends javax.swing.JFrame implements IVista{
 	public void setKeyListener() {
 	}
 
-	public javax.swing.JList<String> getjList1() {
-		return jList1;
-	}
 
-	public void setjList1(javax.swing.JList<String> jList1) {
-		this.jList1 = jList1;
-	}
 
 }

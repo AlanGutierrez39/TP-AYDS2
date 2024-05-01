@@ -26,43 +26,32 @@ public class SocketEmpleado implements Serializable {
 	private PrintWriter out;
 	private ObjectInputStream ois;
 
-    public void envio(Object objeto,String mensaje){
-        try{
+    public String envio(Object objeto,String mensaje){
+    	String resp="";
+    	try{
         	System.out.println(objeto);
         	this.abrirConexion(ip, puerto);
         	System.out.println("Conexion establecida");
             System.out.println("Enviando datos");
-            enviarDatos(objeto,mensaje);
+            resp=enviarDatos(objeto,mensaje);
         }catch(Exception e){
             
         }
+    	System.out.println("ESTO:"+resp);
+        return resp;
     }
     
-    public ArrayList<String> recepcion(Object objeto,String mensaje){
-        ArrayList<String> dnis = null;
-        try{
-            Object objetoARecibir;
-        	System.out.println("esperando respuesta");
-            out.println(mensaje);
-            System.out.println("Respuesta recibida");
-            //recibirDatos(objetoARecibir);
-            objetoARecibir = ois.readObject();
-            //System.out.println(objeto);
-            System.out.println("llega2");
-            System.out.println("datos recibidos");
-            //System.out.println(objetoARecibir);
-            if(objetoARecibir instanceof Empleado){
-                Empleado empleado = (Empleado) objetoARecibir;
-                dnis = empleado.getDnis();
-                System.out.println(dnis);
-            }
-        }catch(Exception e){
-            
-        }finally{
-        	cerrarConexion();
-        }
-		return dnis;
-    }
+   public void llama(Object objeto,String mensaje){
+	   try{
+		   this.abrirConexion(ip, puerto);
+		   oos.writeObject(objeto);
+		   oos.flush();
+		   out.println(mensaje);
+	   }catch(Exception e){
+           
+       }
+   }
+
     
     private void abrirConexion(String ip,int puerto) throws IOException{
         this.socket=new Socket(ip,puerto);
@@ -84,17 +73,13 @@ public class SocketEmpleado implements Serializable {
         }
     }
     
-    private void enviarDatos(Object objeto,String mensaje) throws IOException{
+    private String enviarDatos(Object objeto,String mensaje) throws IOException{
         oos.writeObject(objeto);
         oos.flush();
-        System.out.println("llega2");
+        
+        out.println(mensaje);
         System.out.println("datos enviados: objeto:"+objeto+"Mensaje:"+mensaje);
-    }
-    
-    private void recibirDatos(Object objeto) throws IOException, ClassNotFoundException{
-        objeto = ois.readObject();
-        System.out.println(objeto);
-        System.out.println("llega2");
-        System.out.println("datos recibidos");
-    }
+        
+        return in.readLine();  
+    }  
 }

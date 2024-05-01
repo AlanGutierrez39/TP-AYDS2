@@ -12,5 +12,6 @@ import java.util.ArrayList;
  */
 public interface Ivista_turnos extends IVista{
     
-    public void actualiza(ArrayList<String> dnis,ArrayList<String> boxes);
+    public void actualiza(String dni,String box);
+    public void remove();
 }

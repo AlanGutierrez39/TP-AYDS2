@@ -30,14 +30,16 @@ public class Empleado implements Serializable{
 	 */
 	private static final long serialVersionUID = 2179221794384146037L;
 
-	public Empleado(){}
+	public Empleado(){
+		System.out.println();
+		box++;	
+	}
     
     private transient BufferedReader entrada;
     private transient BufferedWriter salida;
     private transient SocketEmpleado nuevo;
-    private int puesto;
     private String dni;
-    private ArrayList<String> dnis=new ArrayList<String>();
+    private int box;
     
     public void iniciar() {
         nuevo = new SocketEmpleado();
@@ -45,21 +47,24 @@ public class Empleado implements Serializable{
         controladorEmpleado.ejecutar();
     }
     
-    public void ingresa(){
+    public void ingresa(String mensaje){
     	try{
-            nuevo.envio(this, "empleado");
-            this.dnis = nuevo.recepcion(this, "empleado");
+    		if(mensaje.equals("nuevo"))
+    			this.setPuesto(Integer.valueOf(nuevo.envio(this, mensaje)));
+    		else
+    			nuevo.llama(this, String.valueOf(box));
         }catch(Exception e){
             
         }
     }
     
+    
 	public int getPuesto() {
-		return puesto;
+		return box;
 	}
 
 	public void setPuesto(int puesto) {
-		this.puesto = puesto;
+		this.box = puesto;
 	}
 
 
@@ -109,15 +114,9 @@ public class Empleado implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Empleado [puesto=" + puesto + ", dnis=" + dnis + "]";
+		return "Empleado [puesto=" + box + ", dnis=" + "]";
 	}
 
-	public ArrayList<String> getDnis() {
-		return dnis;
-	}
 
-	public void setDnis(ArrayList<String> dnis) {
-		this.dnis = dnis;
-	}
     
 }

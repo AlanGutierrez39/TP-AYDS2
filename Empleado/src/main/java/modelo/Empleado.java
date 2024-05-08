@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ignacio
@@ -40,6 +42,7 @@ public class Empleado implements Serializable{
     private transient SocketEmpleado nuevo;
     private String dni;
     private int box;
+    private final int MAX_REINTENTOS = 4;
     
     public void iniciar() {
         nuevo = new SocketEmpleado();
@@ -47,14 +50,29 @@ public class Empleado implements Serializable{
         controladorEmpleado.ejecutar();
     }
     
-    public void ingresa(String mensaje){
+    public void ingresa(String mensaje, int i){
     	try{
     		if(mensaje.equals("nuevo"))
     			this.setPuesto(Integer.valueOf(nuevo.envio(this, mensaje)));
     		else
     			nuevo.llama(this, String.valueOf(box));
         }catch(Exception e){
-            
+        	// maneja la excepción
+        	JOptionPane.showMessageDialog(null, "No se pudo conectar. Reintentando…");    // registrar la excepción
+            // dormir el thread durante 5 segundos antes de volver a intentarlo
+            try {
+				Thread.sleep(5000);
+				i++;
+				if (i == MAX_REINTENTOS) {
+            		JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+				}
+				else
+					ingresa(mensaje, i);
+			} catch (InterruptedException e1) {
+				if (i == MAX_REINTENTOS) {
+					JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+				}
+            }
         }
     }
     

@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.Serializable;
 
+import javax.swing.JOptionPane;
+
 public class Totem implements Serializable {
     
     private static final long serialVersionUID = 4209360273818925922L;
@@ -19,6 +21,7 @@ public class Totem implements Serializable {
     //private BufferedReader entrada;
     //private BufferedWriter salida;
     private String dni;
+    private final int MAX_REINTENTOS = 4;
     //private NuevoTotem nuevo;
     
     public Totem() {
@@ -36,12 +39,27 @@ public class Totem implements Serializable {
         nuevo = new NuevoTotem();
     }
 
-    public void ingresa(String dni) {
+    public void ingresa(String dni, int i) {
         try {
-            setDni(dni);
+        	setDni(dni);
             nuevo.envioCliente(this, "cliente");
         } catch (Exception e) {
-            e.printStackTrace();
+            // maneja la excepción
+        	JOptionPane.showMessageDialog(null, "No se pudo conectar. Reintentando…");    // registrar la excepción
+            // dormir el thread durante 5 segundos antes de volver a intentarlo
+            try {
+				Thread.sleep(5000);
+				i++;
+				if (i == MAX_REINTENTOS) {
+            		JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+				}
+				else
+					ingresa(dni, i);
+			} catch (InterruptedException e1) {
+				if (i == MAX_REINTENTOS) {
+					JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+				}
+            }
         }
     }
 

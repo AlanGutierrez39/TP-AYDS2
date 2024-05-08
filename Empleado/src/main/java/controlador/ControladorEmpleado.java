@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 
-import javax.swing.DefaultListModel;
-
 import vista.IVista;
 import vista.Ventana_Operador;
 
@@ -37,7 +35,7 @@ public class ControladorEmpleado implements ActionListener, Serializable{
     
     public void ejecutar(){
         vista.ejecutar();
-        this.empleado.ingresa("nuevo");
+        this.empleado.ingresa("nuevo", 0);
     }
     
     
@@ -45,7 +43,7 @@ public class ControladorEmpleado implements ActionListener, Serializable{
     public void actionPerformed(ActionEvent e){
         switch (e.getActionCommand()) {
             case "LLAMAR":
-                empleado.ingresa("llamar");
+                empleado.ingresa("llamar", 0);
             break;
             case "SALIR":
                 vista.cerrarVentana();

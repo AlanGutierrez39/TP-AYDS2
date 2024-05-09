@@ -10,6 +10,8 @@ import modelo.Empleado;
 import java.io.*;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ignacio
@@ -25,7 +27,8 @@ public class Televisor implements Serializable{
    private transient BufferedReader entrada;
    private transient BufferedWriter salida;
    private transient SocketTelevisor nuevo;
-
+   private final int MAX_REINTENTOS = 4;
+   
    public Televisor() {
 	super();
    }
@@ -41,10 +44,32 @@ public class Televisor implements Serializable{
         controladorTelevisor.ejecutar();
     }
     
-    public void comienza(){
-    	System.out.println("pre envio televisor");
-    	nuevo.envio(this, "Televisor");
-    	System.out.println("post envio televisor");
+    public void comienza(int i){
+    	try {
+			System.out.println("pre envio televisor");
+			nuevo.envio(this, "Televisor");
+			System.out.println("post envio televisor");
+		} catch (Exception e) {
+			// maneja la excepción
+			System.err.println("No se pudo conectar. Reintentando…");    // registrar la excepción
+        	//JOptionPane.showMessageDialog(null, "No se pudo conectar. Reintentando…");
+            // dormir el thread durante 5 segundos antes de volver a intentarlo
+            try {
+				Thread.sleep(5000);
+				i++;
+				if (i == MAX_REINTENTOS) {
+					System.err.println("No se pudo conectar.");
+					//JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+				}
+				else
+					comienza(i);
+			} catch (InterruptedException e1) {
+				if (i == MAX_REINTENTOS) {
+					System.err.println("No se pudo conectar.");
+					//JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+				}
+            }
+		}
     }
     
 	public ArrayList<String> getDnis() {

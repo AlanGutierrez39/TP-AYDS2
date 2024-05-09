@@ -35,7 +35,7 @@ public class ControladorTelevisor implements ActionListener, Serializable{
     
     public void ejecutar(){
         this.vista.ejecutar();
-        televisor.comienza();
+        televisor.comienza(0);
     }
     
     

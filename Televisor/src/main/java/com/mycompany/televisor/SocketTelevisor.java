@@ -61,7 +61,10 @@ public class SocketTelevisor implements Serializable{
 	            System.out.println("Respuesta recibida");
 	        }catch(Exception e){
 	            
+	        }finally{
+	        	cerrarConexion();
 	        }
+	        
 	    }
 	    private void enviarDatos(Object objeto, String mensaje) throws IOException, ClassNotFoundException {
 	    	this.oos.writeObject(objeto);

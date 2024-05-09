@@ -18,13 +18,13 @@ public class SocketEmpleado implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6196215119466082230L;
-	int puerto = 1234;
+	int puerto = 5555;
     String ip = "localhost"; // Cambia esto a la dirección IP del servidor
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private BufferedReader in;
 	private PrintWriter out;
-	private ObjectInputStream ois;
+	//private ObjectInputStream ois;
 
     public String envio(Object objeto,String mensaje){
     	String resp="";
@@ -44,11 +44,14 @@ public class SocketEmpleado implements Serializable {
    public void llama(Object objeto,String mensaje){
 	   try{
 		   this.abrirConexion(ip, puerto);
+		   //System.out.println("objeto EMPLEADO: " + objeto);
 		   oos.writeObject(objeto);
 		   oos.flush();
 		   out.println(mensaje);
 	   }catch(Exception e){
-           
+		   
+       }finally{
+       	cerrarConexion();
        }
    }
 
@@ -58,7 +61,7 @@ public class SocketEmpleado implements Serializable {
         this.oos=new ObjectOutputStream(socket.getOutputStream());
         this.in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out=new PrintWriter(socket.getOutputStream(),true);
-        this.ois=new ObjectInputStream(socket.getInputStream());  
+        //this.ois=new ObjectInputStream(socket.getInputStream());  
     }
     
     private void cerrarConexion(){
@@ -67,7 +70,7 @@ public class SocketEmpleado implements Serializable {
             oos.close();
             in.close();
             out.close();
-            ois.close();
+            //ois.close();
         } catch (IOException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,4 +1,4 @@
-package com.mycompany.televisor;
+package modelo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,44 +11,35 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import controlador.ControladorTelevisor;
-import modelo.Empleado;
-
-public class SocketTelevisor implements Serializable{
+public class SocketAdministrador implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1131654034383541732L;
-	//ArrayList<String> dnis = new ArrayList<String>();
+	private static final long serialVersionUID = 649391259069756428L;
+
+	public SocketAdministrador() {
+		
+	}
 	Socket socket;
 	BufferedReader entrada;
 	BufferedWriter salida;
 	private ObjectOutputStream oos;
-	//private ObjectInputStream ois;
+	private ObjectInputStream ois;
 	private PrintWriter out;
-	private ControladorTelevisor controlador;
-
-	
-    public SocketTelevisor(ControladorTelevisor cont) {
-		this.controlador=cont;
-	}
 	
 	private void abrirConexion() throws IOException{
-	    this.socket=new Socket("localhost",5555);
+	    this.socket=new Socket("localhost",1234);
 	    this.salida=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 	    this.entrada=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	    this.oos=new ObjectOutputStream(socket.getOutputStream());
-	    //this.ois=new ObjectInputStream(socket.getInputStream());
+	    this.ois=new ObjectInputStream(socket.getInputStream());
 	    this.out=new PrintWriter(socket.getOutputStream(),true);
 	}
 
-	    
 	    public void envio(Object objeto,String mensaje){
 	        try{
 	        	System.out.println(objeto);
@@ -56,71 +47,49 @@ public class SocketTelevisor implements Serializable{
 	        	System.out.println("Conexion establecida");
 	            System.out.println("Enviando datos");
 	            enviarDatos(objeto,mensaje);
-	            System.out.println("esperando respuesta");
-	            out.println(mensaje);
-	            System.out.println("Respuesta recibida");
 	        }catch(Exception e){
 	            
 	        }
 	    }
-	    private void enviarDatos(Object objeto, String mensaje) throws IOException, ClassNotFoundException {
+	    private void enviarDatos(Object objeto, String mensaje) throws IOException {
 	    	this.oos.writeObject(objeto);
             this.oos.flush();
-            
-            while(!this.socket.isClosed()) {
-            	System.out.println("ssss");
-            	String msgbox=this.entrada.readLine();
-            	String msgdni=this.entrada.readLine();
-            	System.out.println("msgbox " + msgbox);
-            	System.out.println("msgdani " + msgdni);
-            	Timer timer = new Timer();         
-            	timer.schedule(new ActualizaTask(this.controlador,msgdni,msgbox),2000); 
-            	timer.schedule(new RemoveTask(this.controlador),15000);  
-            }
-        }
-		
-	    public class ActualizaTask extends TimerTask {
-
-	        private ControladorTelevisor controlador;
-	        private String dni;
-	        private String box;
-
-	        public ActualizaTask(ControladorTelevisor contro,String dni,String box) {
-	        	this.controlador=contro;
-	        	this.box=box;
-	        	this.dni=dni;
-	        }
-
-	        @Override
-	        public void run() {
-	        		controlador.Actualiza(dni,box);
-	        }
-
-	   }
+            this.salida.write("Administrador" + "\n"); // Agrega un salto de línea al final del mensaje
+            this.salida.flush(); // Asegúrate de que el mensaje se envíe inmediatamente
+            System.out.println(this.salida);
+            this.out.println(this.salida);
+            this.out.flush();
+		}
 	    
-	    public class RemoveTask extends TimerTask {
-
-	        private ControladorTelevisor controlador;
-
-	        public RemoveTask(ControladorTelevisor contro) {
-	        	this.controlador=contro;
+	    public Monitor recepcion(Object objeto,String mensaje){
+	        Monitor adm = null;
+	        try{
+	            Object objetoARecibir;
+	        	System.out.println("esperando respuesta");
+	            out.println(mensaje);
+	            System.out.println("Respuesta recibida");
+	            objetoARecibir = ois.readObject();
+	            System.out.println("llega2");
+	            System.out.println("datos recibidos");
+	            if(objetoARecibir instanceof Monitor){
+	                adm = (Monitor) objetoARecibir;
+	                System.out.println(adm);
+	            }
+	        }catch(Exception e){
+	            
+	        }finally{
+	        	cerrarConexion();
 	        }
-
-	        @Override
-	        public void run() {
-	        	controlador.eliminaprimero();
-	        }
-
-	   }
-	    
+			return adm;
+	    }
 	    private void cerrarConexion(){
 	        try {
 	            socket.close();
 	            oos.close();
 	            out.close();
-	            //ois.close();
+	            ois.close();
 	        } catch (IOException ex) {
-	            Logger.getLogger(Televisor.class.getName()).log(Level.SEVERE, null, ex);
+	            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
 	        }
 
 	    }
@@ -164,13 +133,13 @@ public class SocketTelevisor implements Serializable{
 			this.oos = oos;
 		}
 
-		/*public ObjectInputStream getOis() {
+		public ObjectInputStream getOis() {
 			return ois;
 		}
 
 		public void setOis(ObjectInputStream ois) {
 			this.ois = ois;
-		}*/
+		}
 
 		public PrintWriter getOut() {
 			return out;

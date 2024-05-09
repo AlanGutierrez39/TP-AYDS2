@@ -42,8 +42,9 @@ public class Televisor implements Serializable{
     }
     
     public void comienza(){
+    	System.out.println("pre envio televisor");
     	nuevo.envio(this, "Televisor");
-    	
+    	System.out.println("post envio televisor");
     }
     
 	public ArrayList<String> getDnis() {

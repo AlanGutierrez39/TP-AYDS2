@@ -9,6 +9,6 @@ package modelo;
  * @author ignacio
  */
 public class Constantes {
-    public static final int PUERTO = 1234;
+    public static final int PUERTO = 5555;
     public static final String IP = "localhost";
 }

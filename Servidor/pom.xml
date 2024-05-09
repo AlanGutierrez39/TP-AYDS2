@@ -23,7 +23,7 @@
         </dependency>
         <dependency>
         	<groupId>com.mycompany</groupId>
-        	<artifactId>Administrador</artifactId>
+        	<artifactId>Totem</artifactId>
         	<version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -23,11 +23,11 @@ import java.util.logging.Logger;
 public class NuevoTotem implements Serializable{
   
     private static final long serialVersionUID = 4209360273818925922L;
-    Socket socket;
-    ObjectOutputStream oos;
-    BufferedReader in;
-    PrintWriter out;
-    ObjectInputStream ois;
+    public Socket socket;
+    public ObjectOutputStream oos;
+    public BufferedReader in;
+    public PrintWriter out;
+    //ObjectInputStream ois;
     
     
     public void envioCliente(Object objeto,String mensaje){
@@ -43,7 +43,7 @@ public class NuevoTotem implements Serializable{
     public void envioDatosAservidor(Object objeto,String mensaje){
         try{
             System.out.println(objeto);
-            System.out.println("modelo.NuevoTotem.envioDatosAservidor()");
+            System.out.println("modelo.NuevoTotem.envioDatosAservidor()" + Constantes.IP + Constantes.PUERTO);
             abrirConexion(Constantes.IP,Constantes.PUERTO);
             System.out.println("Conexion establecida");
             System.out.println("Enviando datos");
@@ -63,7 +63,7 @@ public class NuevoTotem implements Serializable{
         this.oos=new ObjectOutputStream(socket.getOutputStream());
         this.in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out=new PrintWriter(socket.getOutputStream(),true);
-        this.ois=new ObjectInputStream(socket.getInputStream());  
+        //this.ois=new ObjectInputStream(socket.getInputStream());
     }
     
     private void enviarDatos(Object objeto,String mensaje) throws IOException{
@@ -83,7 +83,7 @@ public class NuevoTotem implements Serializable{
             oos.close();
             in.close();
             out.close();
-            ois.close();
+            //ois.close();
         } catch (IOException ex) {
             Logger.getLogger(NuevoTotem.class.getName()).log(Level.SEVERE, null, ex);
         }

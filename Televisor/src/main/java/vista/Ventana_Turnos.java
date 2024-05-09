@@ -211,12 +211,12 @@ public class Ventana_Turnos extends javax.swing.JFrame implements Ivista_turnos{
 	}
         
     public void actualiza(String dni,String box){
-    		modelodnis.add(modelodnis.size(),dni);
-			modeloboxes.add(modeloboxes.size(),box);
+    		modelodnis.add(0, dni);
+			modeloboxes.add(0, box);
         }
        
     public void remove() {
-    	modelodnis.remove(0);
-    	modeloboxes.remove(0);
+    	modelodnis.remove(modelodnis.size()-1);
+    	modeloboxes.remove(modeloboxes.size()-1);
     }
 }

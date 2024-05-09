@@ -14,8 +14,12 @@ public class ColasManager {
     private static int indexDnis=0;
     private ArrayList<DatosConexion> teles=new ArrayList<DatosConexion>();
     
+    public ColasManager() {
+    }
     
-    
+    public ArrayList<String> obtener_boxes() {
+    	return this.boxes;
+    }
     
     public void newBox(DatosConexion datos) {
     	PrintWriter out;
@@ -23,7 +27,6 @@ public class ColasManager {
 			System.out.println("las cosas bien"+indexBox);
 			out = new PrintWriter(datos.getSocket().getOutputStream(), true);
 			out.println(String.valueOf(indexBox));
-	    	
 	    	boxes.add(indexBox,String.valueOf(indexBox));
 	    	indexBox++;
 		} catch (IOException e) {
@@ -33,7 +36,6 @@ public class ColasManager {
     
     public void newCliente(String Dni) {
     	dnis.add(Dni);
-    	indexDnis++;
     }
     
     public void llamaCliente(String box) {
@@ -50,7 +52,8 @@ public class ColasManager {
 					e.printStackTrace();
 				}
     		}		
-    		atendidos.add(dnis.get(0));
+    		atendidos.add(indexDnis, dnis.get(0));
+    		indexDnis++;
     		dnis.remove(0);
     	}
     	else {
@@ -63,4 +66,13 @@ public class ColasManager {
     public void creaTele(DatosConexion datos) {
     	teles.add(datos);
     }
+
+	public ArrayList<String> getDnis() {
+		return dnis;
+	}
+
+	public void setDnis(ArrayList<String> dnis) {
+		this.dnis = dnis;
+	}
+    
 }

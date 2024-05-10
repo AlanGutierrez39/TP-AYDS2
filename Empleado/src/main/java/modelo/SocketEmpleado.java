@@ -37,6 +37,7 @@ public class SocketEmpleado implements Serializable {
         }catch(Exception e){
             
         }
+    	cerrarConexion();
     	System.out.println("ESTO:"+resp);
         return resp;
     }

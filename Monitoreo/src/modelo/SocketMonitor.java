@@ -60,7 +60,7 @@ public class SocketMonitor implements Serializable{
 	        public void run() {
 	            try {
 	            	//ServerSocket s = new ServerSocket(7777);
-	            	Socket soc = new Socket("localhost",1234);
+	            	Socket soc = new Socket("localhost",5555);
 	                while (!soc.isClosed()) {
 	                    //Socket soc = s.accept();
 	                    PrintWriter out = new PrintWriter(soc.getOutputStream(), true);

@@ -28,15 +28,15 @@ public class SocketAdministrador implements Serializable {
 	BufferedReader entrada;
 	BufferedWriter salida;
 	private ObjectOutputStream oos;
-	private ObjectInputStream ois;
+	//private ObjectInputStream ois;
 	private PrintWriter out;
 	
 	private void abrirConexion() throws IOException{
-	    this.socket=new Socket("localhost",1234);
+	    this.socket=new Socket("localhost",5555);
 	    this.salida=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 	    this.entrada=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	    this.oos=new ObjectOutputStream(socket.getOutputStream());
-	    this.ois=new ObjectInputStream(socket.getInputStream());
+	    //this.ois=new ObjectInputStream(socket.getInputStream());
 	    this.out=new PrintWriter(socket.getOutputStream(),true);
 	}
 
@@ -62,19 +62,22 @@ public class SocketAdministrador implements Serializable {
 		}
 	    
 	    public Administrador recepcion(Object objeto,String mensaje){
-	        Administrador adm = null;
+	        Administrador adm = new Administrador();
 	        try{
-	            Object objetoARecibir;
+	            //Object objetoARecibir;
 	        	System.out.println("esperando respuesta");
 	            out.println(mensaje);
 	            System.out.println("Respuesta recibida");
-	            objetoARecibir = ois.readObject();
+	            //objetoARecibir = ois.readObject();
+	            adm.setPersonasAtendidas(Integer.parseInt(this.entrada.readLine()));
+	            adm.setTiempo(this.entrada.readLine());
+	            adm.setTiempoPromedio(this.entrada.readLine());
 	            System.out.println("llega2");
 	            System.out.println("datos recibidos");
-	            if(objetoARecibir instanceof Administrador){
+	            /*if(objetoARecibir instanceof Administrador){
 	                adm = (Administrador) objetoARecibir;
 	                System.out.println(adm);
-	            }
+	            }*/
 	        }catch(Exception e){
 	            
 	        }finally{
@@ -87,7 +90,7 @@ public class SocketAdministrador implements Serializable {
 	            socket.close();
 	            oos.close();
 	            out.close();
-	            ois.close();
+	            //ois.close();
 	        } catch (IOException ex) {
 	            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
 	        }
@@ -133,13 +136,13 @@ public class SocketAdministrador implements Serializable {
 			this.oos = oos;
 		}
 
-		public ObjectInputStream getOis() {
+		/*public ObjectInputStream getOis() {
 			return ois;
 		}
 
 		public void setOis(ObjectInputStream ois) {
 			this.ois = ois;
-		}
+		}*/
 
 		public PrintWriter getOut() {
 			return out;

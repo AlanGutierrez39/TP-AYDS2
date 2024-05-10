@@ -32,7 +32,7 @@ public class SocketAdministrador implements Serializable {
 	private PrintWriter out;
 	
 	private void abrirConexion() throws IOException{
-	    this.socket=new Socket("localhost",1234);
+	    this.socket=new Socket("localhost",5555);
 	    this.salida=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 	    this.entrada=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	    this.oos=new ObjectOutputStream(socket.getOutputStream());
@@ -49,6 +49,8 @@ public class SocketAdministrador implements Serializable {
 	            enviarDatos(objeto,mensaje);
 	        }catch(Exception e){
 	            
+	        }finally{
+	           	cerrarConexion();
 	        }
 	    }
 	    private void enviarDatos(Object objeto, String mensaje) throws IOException {

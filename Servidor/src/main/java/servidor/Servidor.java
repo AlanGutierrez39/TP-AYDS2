@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 
 import com.mycompany.televisor.Televisor;
 
+import modelo.Administrador;
 //import modelo.Administrador;
 import modelo.Constantes;
 import modelo.Empleado;
@@ -36,8 +37,6 @@ import modelo.Totem;
  * @author ignacio
  */
 public class Servidor extends Thread implements Serializable{
-    private LocalDateTime tiempo = LocalDateTime.now();
-    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private static final long serialVersionUID = 4209360273818925922L;
     private ColasManager manager = new ColasManager();
     private PrintWriter out;
@@ -80,8 +79,6 @@ public class Servidor extends Thread implements Serializable{
                 
                 // Comunicación bidireccional
                 DatosConexion datos = new DatosConexion(this.clientSocket);
-                
-                //Object obj = datos.ois.readObject();
                 Object obj = datos.ois.readObject();
                 if(obj instanceof Totem){
                 	System.out.println("entra totem");
@@ -100,7 +97,13 @@ public class Servidor extends Thread implements Serializable{
                     if(msg.equalsIgnoreCase("nuevo")) {
                     	manager.newBox(datos);
                     }else 
-                    	manager.llamaCliente(String.valueOf(empleado.getPuesto()));    	        	
+                    	manager.llamaCliente(String.valueOf(empleado.getPuesto()));
+                }else if(obj instanceof Administrador){
+                	System.out.println("entra administrador");
+                	datos.out.println(manager.getAtendidos().size());
+                	datos.out.println(manager.calculaTiempo());
+                	datos.out.println(manager.calculaTiempoPromedio(manager.getAtendidos().size()));
+                	datos.out.flush();
                 }else if (obj==null){
                 	System.out.println("entra ping al servidor");
                 	MemoryMXBean mbean = ManagementFactory.getMemoryMXBean();
@@ -145,73 +148,7 @@ public class Servidor extends Thread implements Serializable{
             System.err.println("Error al manejar la conexión con el cliente: " + e.getMessage());
         }
     }*/
-
-	private String calculaTiempo() {
-    	int horas = LocalDateTime.now().getHour() - this.tiempo.getHour();
-    	int minutos = LocalDateTime.now().getMinute() - this.tiempo.getMinute();
-    	int segundos = LocalDateTime.now().getSecond() - this.tiempo.getSecond();
-    	String tiempoActual;
-    	if (minutos < 0) {
-			minutos = 60-minutos;
-		}
-    	if (minutos > 60) {
-    		horas++;
-			minutos = minutos-60;
-		}
-    	if (segundos < 0) {
-			segundos = 60-segundos;
-		}
-    	if (segundos > 60) {
-    		minutos++;
-			segundos = segundos-60;
-		}
-    	if (minutos < 10 && segundos < 10) {
-    		tiempoActual = horas + ":0" + minutos + ":0" + segundos;
-		} else if (minutos < 10) {
-			tiempoActual = horas + ":0" + minutos + ":" + segundos;
-		} else if (segundos < 10) {
-    		tiempoActual = horas + ":" + minutos + ":0" + segundos;
-    	}else {
-    		tiempoActual = horas + ":" + minutos + ":" + segundos;
-		}
-    	return tiempoActual;
-	}
-	
-    private String calculaTiempoPromedio(int personas) {
-    	int horas = LocalDateTime.now().getHour() - this.tiempo.getHour();
-    	int minutos = LocalDateTime.now().getMinute() - this.tiempo.getMinute();
-    	int segundos = LocalDateTime.now().getSecond() - this.tiempo.getSecond();
-    	String tiempoActual;
-    	if (personas == 0) {
-			tiempoActual = "0:00:00";
-		}
-    	else{
-    		if (minutos < 0) {
-    			minutos = 60-minutos;
-    		}
-        	if (minutos > 60) {
-        		horas++;
-    			minutos = minutos-60;
-    		}
-        	if (segundos < 0) {
-    			segundos = 60-segundos;
-    		}
-        	if (segundos > 60) {
-        		minutos++;
-    			segundos = segundos-60;
-    		}
-    		if (minutos < 10 && segundos < 10) {
-        		tiempoActual = horas/personas + ":0" + minutos/personas + ":0" + segundos/personas;
-    		} else if (minutos < 10) {
-    			tiempoActual = horas/personas + ":0" + minutos/personas + ":" + segundos/personas;
-    		} else if (segundos < 10) {
-        		tiempoActual = horas/personas + ":" + minutos/personas + ":0" + segundos/personas;
-        	}else {
-        		tiempoActual = horas/personas + ":" + minutos/personas + ":" + segundos/personas;
-    		}
-    	}
-		return tiempoActual;
-	}
+    
     public void cerrarsocket(){
     
     }

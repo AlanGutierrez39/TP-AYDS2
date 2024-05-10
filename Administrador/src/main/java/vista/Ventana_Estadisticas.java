@@ -16,6 +16,9 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JButton;
 
 /**
  *
@@ -27,6 +30,8 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
      * Creates new form Ventana_Estadisticas
      */
     public Ventana_Estadisticas() {
+    	setMinimumSize(new Dimension(640, 480));
+    	setSize(new Dimension(640, 480));
         initComponents();
     }
 
@@ -43,17 +48,7 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
         this.jPanel1.setBackground(new Color(153, 153, 255));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addComponent(this.jPanel1, GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addComponent(this.jPanel1, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-        );
-        getContentPane().setLayout(layout);
+        getContentPane().setLayout(new BorderLayout(0, 0));
         this.jPanel1.setLayout(new GridLayout(4, 2, 0, 0));
         
         this.personasAtendidasLabel = new JLabel("Personas atendidas");
@@ -79,6 +74,18 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
         this.cantTiempoLabel = new JLabel("6:55:34");
         this.cantTiempoLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
         this.jPanel1.add(this.cantTiempoLabel);
+        getContentPane().add(this.jPanel1);
+        
+        this.panel = new JPanel();
+        this.panel.setPreferredSize(new Dimension(100, 100));
+        this.panel.setMinimumSize(new Dimension(100, 100));
+        this.panel.setBackground(new Color(153, 153, 255));
+        getContentPane().add(this.panel, BorderLayout.SOUTH);
+        
+        this.actualizarButton = new JButton("Actualizar");
+        this.actualizarButton.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        this.actualizarButton.setActionCommand("ACTUALIZAR");
+        this.panel.add(this.actualizarButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,11 +132,13 @@ public class Ventana_Estadisticas extends javax.swing.JFrame implements IVista{
     private JLabel cantTPLabel;
     private JLabel tiempoLabel;
     private JLabel cantTiempoLabel;
+    private JPanel panel;
+    private JButton actualizarButton;
     // End of variables declaration//GEN-END:variables
 
 @Override
  	public void setActionListener(ActionListener controlador) {
-    	
+		this.actualizarButton.addActionListener(controlador);
  	}
 
  	@Override

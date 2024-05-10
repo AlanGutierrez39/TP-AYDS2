@@ -30,12 +30,15 @@ public class Controlador implements ActionListener{
     
     public void ejecutar(){
         vista.ejecutar();
-        admin.comienza();
+        this.actualizar();
+    }
+    
+    public void actualizar(){
+        admin.comienza(0);
         this.vista.getCantTiempoLabel().setText(this.admin.getTiempo());
         this.vista.getCantTPLabel().setText(this.admin.getTiempoPromedio());
         this.vista.getCantPersonasAtendidasLabel().setText(Integer.toString(this.admin.getPersonasAtendidas()));
     }
-    
     
     @Override
     public void actionPerformed(ActionEvent e){
@@ -43,7 +46,9 @@ public class Controlador implements ActionListener{
             case "SALIR":
                 vista.cerrarVentana();
             break;
-  
+            case "ACTUALIZAR":
+            	this.actualizar();
+            break;
         }
     }
 }

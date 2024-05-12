@@ -37,7 +37,7 @@ public class ControladorEmpleado implements ActionListener, Serializable{
     
     public void ejecutar(){
         vista.ejecutar();
-        this.empleado.ingresa("nuevo", 0);
+        this.empleado.ingresa("nuevo");
     }
     
     
@@ -45,7 +45,7 @@ public class ControladorEmpleado implements ActionListener, Serializable{
     public void actionPerformed(ActionEvent e){
         switch (e.getActionCommand()) {
             case "LLAMAR":
-                empleado.ingresa("llamar", 0);
+                empleado.ingresa("llamar");
             break;
             case "SALIR":
                 vista.cerrarVentana();

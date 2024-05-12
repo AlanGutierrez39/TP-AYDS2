@@ -40,7 +40,7 @@ public class Administrador implements Serializable{
         controlador.ejecutar();
     }
     
-    public void comienza(int i){
+    public void nuevoAdministrador(){
     	try{
             Administrador adm;
     		nuevo.envio(this, "administrador");
@@ -51,23 +51,7 @@ public class Administrador implements Serializable{
         }catch(Exception e){
         	// maneja la excepción
 			System.err.println("No se pudo conectar. Reintentando…");    // registrar la excepción
-        	JOptionPane.showMessageDialog(null, "No se pudo conectar. Reintentando…");
-            // dormir el thread durante 5 segundos antes de volver a intentarlo
-            try {
-				Thread.sleep(5000);
-				i++;
-				if (i == MAX_REINTENTOS) {
-					System.err.println("No se pudo conectar.");
-					JOptionPane.showMessageDialog(null, "No se pudo conectar.");
-				}
-				else
-					comienza(i);
-			} catch (InterruptedException e1) {
-				if (i == MAX_REINTENTOS) {
-					System.err.println("No se pudo conectar.");
-					JOptionPane.showMessageDialog(null, "No se pudo conectar.");
-				}
-            }
+        	
         }
     
 }

@@ -4,11 +4,12 @@
  */
 package controlador;
 
-import com.mycompany.televisor.Televisor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import modelo.Televisor;
 import vista.Ivista_turnos;
 import vista.Ventana_Turnos;
 
@@ -35,7 +36,7 @@ public class ControladorTelevisor implements ActionListener, Serializable{
     
     public void ejecutar(){
         this.vista.ejecutar();
-        televisor.comienza(0);
+        televisor.creaTelevisor();
     }
     
     

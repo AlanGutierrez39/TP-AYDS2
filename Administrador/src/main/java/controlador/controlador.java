@@ -34,7 +34,7 @@ public class Controlador implements ActionListener{
     }
     
     public void actualizar(){
-        admin.comienza(0);
+        admin.nuevoAdministrador();
         this.vista.getCantTiempoLabel().setText(this.admin.getTiempo());
         this.vista.getCantTPLabel().setText(this.admin.getTiempoPromedio());
         this.vista.getCantPersonasAtendidasLabel().setText(Integer.toString(this.admin.getPersonasAtendidas()));

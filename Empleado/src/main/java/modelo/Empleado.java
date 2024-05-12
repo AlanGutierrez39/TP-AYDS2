@@ -50,33 +50,25 @@ public class Empleado implements Serializable{
         controladorEmpleado.ejecutar();
     }
     
-    public void ingresa(String mensaje, int i){
+    public void ingresa(String mensaje){
     	try{
     		if(mensaje.equals("nuevo"))
-    			this.setPuesto(Integer.valueOf(nuevo.envio(this, mensaje)));
+    			nuevoEmpleado(mensaje);
     		else
-    			nuevo.llama(this, String.valueOf(box));
+    			llamaCliente(mensaje);
         }catch(Exception e){
         	// maneja la excepción
         	JOptionPane.showMessageDialog(null, "No se pudo conectar. Reintentando…");    // registrar la excepción
-            // dormir el thread durante 5 segundos antes de volver a intentarlo
-            try {
-				Thread.sleep(5000);
-				i++;
-				if (i == MAX_REINTENTOS) {
-            		JOptionPane.showMessageDialog(null, "No se pudo conectar.");
-				}
-				else
-					ingresa(mensaje, i);
-			} catch (InterruptedException e1) {
-				if (i == MAX_REINTENTOS) {
-					JOptionPane.showMessageDialog(null, "No se pudo conectar.");
-				}
-            }
         }
     }
     
+    public void llamaCliente(String mensaje) {
+    	nuevo.llama(this, String.valueOf(box));
+    }
     
+    public void nuevoEmpleado(String mensaje) {
+    	this.setPuesto(Integer.valueOf(nuevo.envio(this, mensaje)));
+    }
 	public int getPuesto() {
 		return box;
 	}

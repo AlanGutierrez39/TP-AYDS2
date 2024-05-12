@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class ColasManager {
+import modelo.EmpleadoTrigger;
+import modelo.Estadisticas;
+import modelo.Notificador;
+import modelo.Registro;
+
+public class ColasManager implements Registro,EmpleadoTrigger,Notificador,Estadisticas{
 
 	
     private ArrayList<String> boxes=new ArrayList<String>();
-    private ArrayList<String> dnis=new ArrayList<String>();
+    public ArrayList<String> dnis=new ArrayList<String>();
     private ArrayList<String> atendidos=new ArrayList<String>();
     private ArrayList<Integer> tiempoInicio=new ArrayList<Integer>();
     private ArrayList<Integer> tiempoFin=new ArrayList<Integer>();
@@ -30,8 +35,7 @@ public class ColasManager {
 			System.out.println("las cosas bien"+indexBox);
 			out = new PrintWriter(datos.getSocket().getOutputStream(), true);
 			out.println(String.valueOf(indexBox));
-	    	boxes.add(indexBox,String.valueOf(indexBox));
-	    	indexBox++;
+	    	this.nuevoEmpleado(String.valueOf(indexBox));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -144,5 +148,64 @@ public class ColasManager {
 	public void setAtendidos(ArrayList<String> atendidos) {
 		this.atendidos = atendidos;
 	}
-    
+
+	@Override
+	public void nuevoEmpleado(String mensaje) {
+		boxes.add(indexBox,mensaje);
+    	indexBox++;
+	}
+
+	@Override
+	public void CreaTelevisor() {
+
+	}
+
+	
+	public void nuevoAdministrador(DatosConexion datos) {
+		datos.out.println(this.getAtendidos().size());
+    	datos.out.println(this.calculaTiempo());
+    	datos.out.println(this.calculaTiempoPromedio(this.getAtendidos().size()));
+    	datos.out.flush();
+	}
+
+	@Override
+	public void nuevoAdministrador() {
+
+	}
+	
+	public int obtener_index_dnis() {
+    	return indexBox;
+    }
+    public int obtener_index_box() {
+    	return indexBox;
+    }
+    public ArrayList<String> obtener_dnis(){
+    	return this.dnis;
+    }
+    public ArrayList<String> obtener_atendidos() {
+    	return this.atendidos;
+    }
+    public ArrayList<DatosConexion> obtener_teles(){
+    	return this.teles;
+    }
+    public void agregarBox(String box) {
+    	this.boxes.add(box);
+    }
+    public void agregarIndexBox(int indexBox) {
+    	this.indexBox = indexBox;
+    }
+    public void agregarDnis(ArrayList<String> dnis_nuevo) {
+    	//System.out.println("entro colas");
+    	this.dnis = dnis_nuevo;
+    }
+    public void agregarBoxes(ArrayList<String> boxes) {
+    	this.boxes = boxes;
+    }
+    public void agregarAtendidos(ArrayList<String> atendidos) {
+    	this.atendidos = atendidos;
+    }
+    public void agregarTeles(ArrayList<DatosConexion> teles2) {
+    	//System.out.println("entro teles");
+    	this.teles = teles2;
+    }
 }

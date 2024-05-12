@@ -21,7 +21,7 @@ import servidor.Servidor;
  */
 public class Main {
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
     	Servidor servidor = new Servidor();
     	servidor.startServer();
     }

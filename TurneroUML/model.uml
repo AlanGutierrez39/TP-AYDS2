@@ -32,6 +32,8 @@
       <interfaceRealization xmi:id="_5XuIIOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw _x2JIkO3YEe6QNolnF0WnwQ" supplier="_9VpLsOxtEe6Epv5EoIK4gw" contract="_9VpLsOxtEe6Epv5EoIK4gw"/>
       <interfaceRealization xmi:id="_93ZYcOxuEe6Epv5EoIK4gw" client="_Rf8wYOxDEe6Epv5EoIK4gw _GETrAO3ZEe6QNolnF0WnwQ" supplier="__XDp0OxtEe6Epv5EoIK4gw" contract="__XDp0OxtEe6Epv5EoIK4gw"/>
       <ownedOperation xmi:id="_aN04MPzmEe6zLfKSY1rUsw" name="Operation_1"/>
+      <ownedOperation xmi:id="_X41YUBDSEe-GQKXp8uu6LQ" name="Operation_2"/>
+      <ownedOperation xmi:id="_C36GwBDTEe-GQKXp8uu6LQ" name="Operation_3"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_VY70IOxDEe6Epv5EoIK4gw" name="Registro">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_udKtouxDEe6Epv5EoIK4gw" name="RegistroPort" type="_VY70IOxDEe6Epv5EoIK4gw"/>
@@ -259,6 +261,33 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_JyMa4P2kEe6NDrNAmuKeVw" name="Administrador" visibility="public">
       <interfaceRealization xmi:id="_U2o_wP2kEe6NDrNAmuKeVw" client="_JyMa4P2kEe6NDrNAmuKeVw" supplier="__XDp0OxtEe6Epv5EoIK4gw" contract="__XDp0OxtEe6Epv5EoIK4gw"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_gHTrEBDREe-GQKXp8uu6LQ" name="NewModel">
+      <ownedAttribute xmi:id="_Mk8pQBDSEe-GQKXp8uu6LQ" name="Registro" type="_VY70IOxDEe6Epv5EoIK4gw"/>
+      <ownedAttribute xmi:id="_Pj9YEBDSEe-GQKXp8uu6LQ" name="Gestión de cola" type="_Rf8wYOxDEe6Epv5EoIK4gw"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_X41_YRDSEe-GQKXp8uu6LQ" name="Operation_2"/>
+      <lifeline xmi:id="_Mk8pQRDSEe-GQKXp8uu6LQ" name="Registro" represents="_Mk8pQBDSEe-GQKXp8uu6LQ" coveredBy="_X41_YhDSEe-GQKXp8uu6LQ"/>
+      <lifeline xmi:id="_Pj9_IBDSEe-GQKXp8uu6LQ" name="Gestión de cola" represents="_Pj9YEBDSEe-GQKXp8uu6LQ" coveredBy="_X41_YxDSEe-GQKXp8uu6LQ _X41_ZBDSEe-GQKXp8uu6LQ _X41_ZRDSEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_X41_YhDSEe-GQKXp8uu6LQ" name="Operation_2_sender" covered="_Mk8pQRDSEe-GQKXp8uu6LQ" message="_X41_YBDSEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_X41_YxDSEe-GQKXp8uu6LQ" name="Operation_2_receiver" covered="_Pj9_IBDSEe-GQKXp8uu6LQ" message="_X41_YBDSEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_X41_ZBDSEe-GQKXp8uu6LQ" name="" covered="_Pj9_IBDSEe-GQKXp8uu6LQ" finish="_X41_ZRDSEe-GQKXp8uu6LQ" start="_X41_YxDSEe-GQKXp8uu6LQ" behavior="_X41_YRDSEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_X41_ZRDSEe-GQKXp8uu6LQ" name="Operation_2_finish" covered="_Pj9_IBDSEe-GQKXp8uu6LQ" execution="_X41_ZBDSEe-GQKXp8uu6LQ"/>
+      <message xmi:id="_X41_YBDSEe-GQKXp8uu6LQ" name="newCliente(String dni)" messageSort="asynchCall" receiveEvent="_X41_YxDSEe-GQKXp8uu6LQ" sendEvent="_X41_YhDSEe-GQKXp8uu6LQ" signature="_X41YUBDSEe-GQKXp8uu6LQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_7EhC8BDSEe-GQKXp8uu6LQ" name="NewModel">
+      <ownedAttribute xmi:id="_A1EsUBDTEe-GQKXp8uu6LQ" name="Llamado" type="_Oan-MOxDEe6Epv5EoIK4gw"/>
+      <ownedAttribute xmi:id="_BvBMEBDTEe-GQKXp8uu6LQ" name="Gestión de cola" type="_Rf8wYOxDEe6Epv5EoIK4gw"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_C36GwhDTEe-GQKXp8uu6LQ" name="Operation_3"/>
+      <lifeline xmi:id="_A1F6cBDTEe-GQKXp8uu6LQ" name="Llamado" represents="_A1EsUBDTEe-GQKXp8uu6LQ" coveredBy="_C36t0RDTEe-GQKXp8uu6LQ _C36t1RDTEe-GQKXp8uu6LQ"/>
+      <lifeline xmi:id="_BvBMERDTEe-GQKXp8uu6LQ" name="Gestión de cola" represents="_BvBMEBDTEe-GQKXp8uu6LQ" coveredBy="_C36t0hDTEe-GQKXp8uu6LQ _C36t1BDTEe-GQKXp8uu6LQ _C36t0xDTEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_C36t0RDTEe-GQKXp8uu6LQ" name="Operation_3_sender" covered="_A1F6cBDTEe-GQKXp8uu6LQ" message="_C36GwRDTEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_C36t0hDTEe-GQKXp8uu6LQ" name="Operation_3_receiver" covered="_BvBMERDTEe-GQKXp8uu6LQ" message="_C36GwRDTEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_C36t1BDTEe-GQKXp8uu6LQ" name="" covered="_BvBMERDTEe-GQKXp8uu6LQ" finish="_C36t0xDTEe-GQKXp8uu6LQ" start="_C36t0hDTEe-GQKXp8uu6LQ" behavior="_C36GwhDTEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_C36t0xDTEe-GQKXp8uu6LQ" name="Operation_3_reply_sender" covered="_BvBMERDTEe-GQKXp8uu6LQ" message="_C36t0BDTEe-GQKXp8uu6LQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_C36t1RDTEe-GQKXp8uu6LQ" name="Operation_3_reply_receiver" covered="_A1F6cBDTEe-GQKXp8uu6LQ" message="_C36t0BDTEe-GQKXp8uu6LQ"/>
+      <message xmi:id="_C36GwRDTEe-GQKXp8uu6LQ" name="llamaCliente(String mensaje)" receiveEvent="_C36t0hDTEe-GQKXp8uu6LQ" sendEvent="_C36t0RDTEe-GQKXp8uu6LQ" signature="_C36GwBDTEe-GQKXp8uu6LQ"/>
+      <message xmi:id="_C36t0BDTEe-GQKXp8uu6LQ" name="llamaCliente(String box)" messageSort="reply" receiveEvent="_C36t1RDTEe-GQKXp8uu6LQ" sendEvent="_C36t0xDTEe-GQKXp8uu6LQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_4Yco0BDTEe-GQKXp8uu6LQ" name="NewModel"/>
     <profileApplication xmi:id="_eQLR4OxUEe6Epv5EoIK4gw">
       <eAnnotations xmi:id="_eQLR4exUEe6Epv5EoIK4gw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>

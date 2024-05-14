@@ -154,7 +154,7 @@ public class Servidor extends Thread implements Serializable{
     
     public static void mandar_int(String mensaje,int numero_enviar) {
 		try {
-			Socket socket = new Socket("localhost", 7777);
+			Socket socket = new Socket("localhost", 5555);
 			//inicializo
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -179,7 +179,7 @@ public class Servidor extends Thread implements Serializable{
     
     public static void mandar_objeto(String mensaje,Object objeto) {
 		try {
-			Socket socket = new Socket("localhost", 7777);
+			Socket socket = new Socket("localhost", 5555);
 			//inicializo
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 	        PrintWriter out = new PrintWriter(socket.getOutputStream(),true);

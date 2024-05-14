@@ -32,10 +32,9 @@
         	<version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
-        <exec.mainClass>com.mycompany.servidor.Servidor</exec.mainClass>
-    </properties>
+     <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>22</maven.compiler.source>
+    <maven.compiler.target>22</maven.compiler.target>
+</properties>
 </project>

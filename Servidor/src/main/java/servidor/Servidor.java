@@ -7,10 +7,8 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.Serializable;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
@@ -18,18 +16,10 @@ import java.lang.management.MemoryUsage;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import modelo.Televisor;
 
 import modelo.Administrador;
-import modelo.Constantes;
 import modelo.Empleado;
+import modelo.Televisor;
 import modelo.Totem;
 
 /**
@@ -37,15 +27,13 @@ import modelo.Totem;
  * @author ignacio
  */
 public class Servidor extends Thread implements Serializable{
-    private LocalDateTime tiempo = LocalDateTime.now();
-    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private static final long serialVersionUID = 4209360273818925922L;
     private ColasManager manager;
     private PrintWriter out;
     private ServerSocket serverSocket;
     
     public Servidor() throws Exception{
-    	this.manager = new ColasManager();
+    	this.manager = ColasManager.getInstancia();
     	this.serverSocket = new ServerSocket(5555);
     	System.out.println("Servidor TCP iniciado. Esperando conexiones...");
     	/*Thread.sleep(5000);
@@ -73,7 +61,14 @@ public class Servidor extends Thread implements Serializable{
 			while(true) {
 				Socket clientSocket = this.serverSocket.accept();
 				Thread thread = new Thread(new ClientHandler(clientSocket,manager));
+				System.out.println(thread);
 				thread.start();
+				/*try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -96,24 +91,24 @@ public class Servidor extends Thread implements Serializable{
             try { 
                 DatosConexion datos = new DatosConexion(this.clientSocket);
                 
-                ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
+                //ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
                 Object obj = datos.ois.readObject();
                 if(obj instanceof Totem){
                 	System.out.println("entra totem");
                     Totem totem=(Totem)obj;
                     System.out.println("dni que entra: " + totem.getDni());
                     manager.newCliente(totem.getDni());
-                    System.out.println("documentos: " + manager.dnis.toString());
+                    System.out.println("documentos: " + manager.getDnis().toString());
                     
                     mandar_int("agregar index dnis",manager.obtener_index_dnis()); //manager.obtener_index_dnis()
-                    mandar_objeto("agregar dnis",manager.obtener_dnis());
+                    mandar_objeto("agregar dnis",manager.obtener_dnis().getLast());
                 }else if(obj instanceof Televisor){
                 	System.out.println("entra televisor");
                 	System.out.println("datos: " + datos);
                     manager.creaTele(datos);
                     //zona de pruebas
-                    //mandar_objeto("televisor",manager.obtener_teles());
-                    mandar_objeto("televisor",manager.obtener_teles().get(0).dis);
+                    mandar_objeto("televisor",manager.obtener_teles());
+                    //mandar_objeto("televisor",manager.obtener_teles().getLast());
                 }else if(obj instanceof Empleado){
                 	System.out.println("entra empleado");
                     Empleado empleado = (Empleado) obj;
@@ -168,6 +163,7 @@ public class Servidor extends Thread implements Serializable{
 	        dos.writeInt(numero_enviar);
 	        dos.flush();
 	        System.out.println("se mando el integer");
+	        socket.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -190,9 +186,11 @@ public class Servidor extends Thread implements Serializable{
 			dos.flush();
 			System.out.println("se mando el mensaje");
 			oos.flush();
+			System.out.println(objeto);
 	        oos.writeObject(objeto);
 	        oos.flush();
 	        System.out.println("se mando el objeto");
+	        socket.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -202,72 +200,6 @@ public class Servidor extends Thread implements Serializable{
 		}
     }
 
-	private String calculaTiempo() {
-    	int horas = LocalDateTime.now().getHour() - this.tiempo.getHour();
-    	int minutos = LocalDateTime.now().getMinute() - this.tiempo.getMinute();
-    	int segundos = LocalDateTime.now().getSecond() - this.tiempo.getSecond();
-    	String tiempoActual;
-    	if (minutos < 0) {
-			minutos = 60-minutos;
-		}
-    	if (minutos > 60) {
-    		horas++;
-			minutos = minutos-60;
-		}
-    	if (segundos < 0) {
-			segundos = 60-segundos;
-		}
-    	if (segundos > 60) {
-    		minutos++;
-			segundos = segundos-60;
-		}
-    	if (minutos < 10 && segundos < 10) {
-    		tiempoActual = horas + ":0" + minutos + ":0" + segundos;
-		} else if (minutos < 10) {
-			tiempoActual = horas + ":0" + minutos + ":" + segundos;
-		} else if (segundos < 10) {
-    		tiempoActual = horas + ":" + minutos + ":0" + segundos;
-    	}else {
-    		tiempoActual = horas + ":" + minutos + ":" + segundos;
-		}
-    	return tiempoActual;
-	}
-	
-    private String calculaTiempoPromedio(int personas) {
-    	int horas = LocalDateTime.now().getHour() - this.tiempo.getHour();
-    	int minutos = LocalDateTime.now().getMinute() - this.tiempo.getMinute();
-    	int segundos = LocalDateTime.now().getSecond() - this.tiempo.getSecond();
-    	String tiempoActual;
-    	if (personas == 0) {
-			tiempoActual = "0:00:00";
-		}
-    	else{
-    		if (minutos < 0) {
-    			minutos = 60-minutos;
-    		}
-        	if (minutos > 60) {
-        		horas++;
-    			minutos = minutos-60;
-    		}
-        	if (segundos < 0) {
-    			segundos = 60-segundos;
-    		}
-        	if (segundos > 60) {
-        		minutos++;
-    			segundos = segundos-60;
-    		}
-    		if (minutos < 10 && segundos < 10) {
-        		tiempoActual = horas/personas + ":0" + minutos/personas + ":0" + segundos/personas;
-    		} else if (minutos < 10) {
-    			tiempoActual = horas/personas + ":0" + minutos/personas + ":" + segundos/personas;
-    		} else if (segundos < 10) {
-        		tiempoActual = horas/personas + ":" + minutos/personas + ":0" + segundos/personas;
-        	}else {
-        		tiempoActual = horas/personas + ":" + minutos/personas + ":" + segundos/personas;
-    		}
-    	}
-		return tiempoActual;
-	}
     public void cerrarsocket(){
     
     }

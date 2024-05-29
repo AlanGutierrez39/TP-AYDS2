@@ -37,6 +37,7 @@ public class Ventana_login extends javax.swing.JFrame implements I_Login,KeyList
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         DNITEXTFIELD = new javax.swing.JTextField();
+        this.DNITEXTFIELD.setEditable(false);
         dos = new javax.swing.JButton();
         uno = new javax.swing.JButton();
         tres = new javax.swing.JButton();

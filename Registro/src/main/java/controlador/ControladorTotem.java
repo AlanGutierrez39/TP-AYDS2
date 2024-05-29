@@ -12,6 +12,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import modelo.Totem;
 import vista.IVista;
 import vista.I_Login;
@@ -46,9 +49,17 @@ public class ControladorTotem implements ActionListener,Serializable{
     public void actionPerformed(ActionEvent e){
         switch (e.getActionCommand()) {
             case "INGRESAR":
-                totem.newCliente(vistalogin.getDnioid());
-                vistalogin.cerrarVentana();
-                vistaprincipal.ejecutar();
+            	if (vistalogin.getDnioid().isBlank()) {
+        			JOptionPane.showMessageDialog(null, "El campo no puede estar vacío");
+        		}
+            	else if (vistalogin.getDnioid().length()>8) {
+        			JOptionPane.showMessageDialog(null, "El DNI no puede tener más de 8 dígitos");
+        		}
+            	else{
+	                totem.newCliente(vistalogin.getDnioid());
+	                vistalogin.cerrarVentana();
+	                vistaprincipal.ejecutar();
+            	}
             break;
             case "ATRAS":
                 vistalogin.cerrarVentana();

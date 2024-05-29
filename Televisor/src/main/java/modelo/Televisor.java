@@ -4,13 +4,12 @@
  */
 package modelo;
 
-import controlador.ControladorTelevisor;
-import modelo.Empleado;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import controlador.ControladorTelevisor;
 
 /**
  *
@@ -95,6 +94,10 @@ public class Televisor implements Serializable{
 
 	public void setBoxes(ArrayList<String> boxes) {
 		this.boxes = boxes;
+	}
+
+	public int getMAX_REINTENTOS() {
+		return MAX_REINTENTOS;
 	}
 	
 }

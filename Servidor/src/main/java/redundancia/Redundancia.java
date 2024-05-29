@@ -1,6 +1,5 @@
 package redundancia;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -40,7 +39,7 @@ public class Redundancia extends Thread{
         private ColasManager manager;
         
         public ClientHandler(Socket clientSocket) {
-        	this.manager = new ColasManager();
+        	this.manager = ColasManager.getInstancia();
         	this.clientSocket = clientSocket;
         }
 

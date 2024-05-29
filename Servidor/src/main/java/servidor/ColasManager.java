@@ -11,9 +11,8 @@ import modelo.Registro;
 
 public class ColasManager implements Registro,EmpleadoTrigger,Notificador,Estadisticas{
 
-	
     private ArrayList<String> boxes=new ArrayList<String>();
-    public ArrayList<String> dnis=new ArrayList<String>();
+    private ArrayList<String> dnis=new ArrayList<String>();
     private ArrayList<String> atendidos=new ArrayList<String>();
     private ArrayList<Integer> tiempoInicio=new ArrayList<Integer>();
     private ArrayList<Integer> tiempoFin=new ArrayList<Integer>();
@@ -21,8 +20,16 @@ public class ColasManager implements Registro,EmpleadoTrigger,Notificador,Estadi
     private static int indexDnis=0;
     private ArrayList<DatosConexion> teles=new ArrayList<DatosConexion>();
     private long tiempo = System.currentTimeMillis();
+    private static ColasManager instancia;
     
-    public ColasManager() {
+    private ColasManager() {
+    }
+    
+    public static ColasManager getInstancia() {
+        if (instancia == null) {
+            instancia = new ColasManager();
+        }
+        return instancia;
     }
     
     public ArrayList<String> obtener_boxes() {
@@ -192,7 +199,7 @@ public class ColasManager implements Registro,EmpleadoTrigger,Notificador,Estadi
     	this.boxes.add(box);
     }
     public void agregarIndexBox(int indexBox) {
-    	this.indexBox = indexBox;
+    	ColasManager.indexBox = indexBox;
     }
     public void agregarDnis(ArrayList<String> dnis_nuevo) {
     	//System.out.println("entro colas");

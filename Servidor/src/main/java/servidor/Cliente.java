@@ -81,4 +81,9 @@ public class Cliente implements Serializable {
 		return serialVersionUID;
 	}
 
+	@Override
+	public String toString() {
+		return "Cliente [dni=" + dni + ", tipoCliente=" + tipoCliente + ", fechaNacimiento=" + fechaNacimiento + "]";
+	}
+
 }

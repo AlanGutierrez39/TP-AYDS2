@@ -1,6 +1,6 @@
 package modelo;
 
-public interface Notificador {
+public interface Notificacion {
 
 	public void CreaTelevisor();
 }

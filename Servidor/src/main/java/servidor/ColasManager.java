@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import modelo.EmpleadoTrigger;
-import modelo.Estadisticas;
-import modelo.Notificador;
+import modelo.Llamado;
+import modelo.Monitoreo;
+import modelo.Notificacion;
 import modelo.Registro;
 
-public class ColasManager implements Registro,EmpleadoTrigger,Notificador,Estadisticas{
+public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
 
     private ArrayList<String> boxes=new ArrayList<String>();
     private ArrayList<String> dnis=new ArrayList<String>();
@@ -79,7 +79,7 @@ public class ColasManager implements Registro,EmpleadoTrigger,Notificador,Estadi
     	
     }
     
-    protected String calculaTiempo() {
+    public String calculaTiempo() {
     	int segundos = (int) ((System.currentTimeMillis() - this.tiempo)/1000);
     	int minutos = segundos/60;
     	int horas = minutos/60;
@@ -101,7 +101,7 @@ public class ColasManager implements Registro,EmpleadoTrigger,Notificador,Estadi
     	return tiempoActual;
 	}
 	
-    protected String calculaTiempoPromedio(int personas) {
+    public String calculaTiempoPromedio(int personas) {
     	String tiempoActual;
     	if (personas == 0) {
 			tiempoActual = "0:00:00";

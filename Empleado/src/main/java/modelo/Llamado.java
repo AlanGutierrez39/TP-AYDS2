@@ -1,6 +1,6 @@
 package modelo;
 
-public interface EmpleadoTrigger {
+public interface Llamado {
 
 	public void nuevoEmpleado(String mensaje);
 	

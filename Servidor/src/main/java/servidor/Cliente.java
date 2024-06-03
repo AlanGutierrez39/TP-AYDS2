@@ -1,89 +1,83 @@
 package servidor;
 
 import java.io.Serializable;
-import java.util.GregorianCalendar;
 
-public class Cliente implements Serializable {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-	/**
-	 * 
-	 */
+import patronState.IState;
+import patronState.SinAtenderState;
+
+public class Cliente implements Serializable, IState{
+
 	private static final long serialVersionUID = 4875610979375323141L;
-	private String dni;
-	private String tipoCliente;
-	private GregorianCalendar fechaNacimiento;
-    //private boolean atendido;
-    private int tiempoInicio;
-    private int tiempoFin;
-
-	public Cliente() {
-		// TODO Auto-generated constructor stub
-	}
+    private IState estado = new SinAtenderState(this);
 	
-	public Cliente(String dni, String tipoCliente, GregorianCalendar fechaNacimiento) {
-		super();
-		this.dni = dni;
-		this.tipoCliente = tipoCliente;
-		this.fechaNacimiento = fechaNacimiento;
+    @JsonProperty("numero_dni")
+    private String dni;
+
+    @JsonProperty("fecha_de_nacimiento")
+    private String fecha_de_nacimiento;
+
+    @JsonProperty("prioridad")
+    private String prioridad;
+    
+	public Cliente(String dni,String prio,String fecha) {
+		this.dni=dni;
+		this.fecha_de_nacimiento=fecha;
+		this.prioridad=prio;
 	}
+
+	public Cliente() {}
+
+    @Override
+    public String toString() {
+        
+        return "Cliente{" +
+                "fecha_de_nacimiento='" + fecha_de_nacimiento + '\'' +
+                ", numero_dni='" + dni + '\'' +
+                ", prioridad=" + prioridad +'}' + "\n";
+    }
 	
-	public Cliente(String dni, String tipoCliente, GregorianCalendar fechaNacimiento, int tiempoInicio,
-			int tiempoFin) {
-		super();
-		this.dni = dni;
-		this.tipoCliente = tipoCliente;
-		this.fechaNacimiento = fechaNacimiento;
-		this.tiempoInicio = tiempoInicio;
-		this.tiempoFin = tiempoFin;
+	// Getters y setters
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getFecha_de_nacimiento() {
+        return fecha_de_nacimiento;
+    }
+
+    public void setFecha_de_nacimiento(String fecha_de_nacimiento) {
+        this.fecha_de_nacimiento = fecha_de_nacimiento;
+    }
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
+	public IState getEstado() {
+		return estado;
 	}
 
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	public String getTipoCliente() {
-		return tipoCliente;
-	}
-
-	public void setTipoCliente(String tipoCliente) {
-		this.tipoCliente = tipoCliente;
-	}
-
-	public GregorianCalendar getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-
-	public void setFechaNacimiento(GregorianCalendar fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
-	public int getTiempoInicio() {
-		return tiempoInicio;
-	}
-
-	public void setTiempoInicio(int tiempoInicio) {
-		this.tiempoInicio = tiempoInicio;
-	}
-
-	public int getTiempoFin() {
-		return tiempoFin;
-	}
-
-	public void setTiempoFin(int tiempoFin) {
-		this.tiempoFin = tiempoFin;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setEstado(IState estado) {
+		this.estado = estado;
 	}
 
 	@Override
-	public String toString() {
-		return "Cliente [dni=" + dni + ", tipoCliente=" + tipoCliente + ", fechaNacimiento=" + fechaNacimiento + "]";
+	public void ponerAtendido() {
+		this.estado.ponerAtendido();
 	}
 
+	@Override
+	public void ponerSinAtender() {
+		this.estado.ponerSinAtender();
+	}
 }

@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import Registros.ClientesJsonFactory;
+import Registros.ClientesLogJsonFactory;
+import Registros.Prioridad;
+import Registros.PrioridadAfinidad;
+import Registros.PrioridadDefault;
+import Registros.PrioridadEdad;
 import modelo.Llamado;
 import modelo.Monitoreo;
 import modelo.Notificacion;
@@ -16,13 +22,55 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     private ArrayList<String> atendidos=new ArrayList<String>();
     private ArrayList<Integer> tiempoInicio=new ArrayList<Integer>();
     private ArrayList<Integer> tiempoFin=new ArrayList<Integer>();
+    
+    
+    private ArrayList<Cliente> clientes=new ArrayList<Cliente>();
+    private ArrayList<ClienteLog> clientesLog=new ArrayList<ClienteLog>();
+    
     private static int indexBox=0;
     private static int indexDnis=0;
     private ArrayList<DatosConexion> teles=new ArrayList<DatosConexion>();
     private long tiempo = System.currentTimeMillis();
     private static ColasManager instancia;
     
+    
+    private static String prioridad="Default";//"afinidad";//"edad";//
+    private Prioridad prio;
+    private final String archivoJson = "clientes.json";
+    private final String archivoLogJson = "clientes_log.json";
+    private ClientesJsonFactory clientesFactory;
+    private ClientesLogJsonFactory logFactory;
+    
+    
+    
     private ColasManager() {
+    	clientesFactory = new ClientesJsonFactory();
+        logFactory = new ClientesLogJsonFactory();
+     
+   
+        clientesFactory.leerDesdeJson(archivoJson);
+        clientes=clientesFactory.getClientes();
+        
+        System.out.println(clientes);
+        logFactory.leerDesdeJson(archivoLogJson);
+        clientesLog=logFactory.getClientesLog();
+        System.out.println(clientesLog);
+        
+        if(prioridad.compareToIgnoreCase("afinidad")==0) {
+        	prio=new PrioridadAfinidad();
+        }
+        else if(prioridad.compareToIgnoreCase("edad")==0) {
+        	prio=new PrioridadEdad();
+        }
+        else {
+        	prio=new PrioridadDefault();
+        }   
+        
+        dnis=prio.aplicaPrioridad(clientes);
+        System.out.println(dnis);
+        for (int i = 0; i < dnis.size(); i++) {
+			this.tiempoInicio.add((int) (System.currentTimeMillis()/1000));
+		}
     }
     
     public static ColasManager getInstancia() {
@@ -39,7 +87,6 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     public void newBox(DatosConexion datos) {
     	PrintWriter out;
 		try {
-			System.out.println("las cosas bien"+indexBox);
 			out = new PrintWriter(datos.getSocket().getOutputStream(), true);
 			out.println(String.valueOf(indexBox));
 	    	this.nuevoEmpleado(String.valueOf(indexBox));
@@ -48,16 +95,37 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
 		}
     }
     
-    public void newCliente(String Dni) {
-    	dnis.add(Dni);
+    public void newCliente(String dni) {
+    	int esta=0;
+    	//Mirar si esta en la lista de clientes y sino agregarlo con prioridad minima
+    	for(int i=0;i<clientes.size();i++) {
+    		if(dni.compareTo(clientes.get(i).getDni())==0){
+    			esta=1;
+    			this.clientes.get(i).ponerSinAtender();
+    			System.out.println(this.clientes.get(i).getEstado());
+    		}
+    	}
+    	if(esta==0) {
+    		Cliente nuevo=new Cliente(dni,"Default","2024-05-31");
+    		ClienteLog nuevolog=new ClienteLog(dni);
+    		
+    		clientesLog.add(nuevolog);
+    		clientes.add(nuevo);
+    		
+    		clientesFactory.setClientes(clientes);
+    		logFactory.setClientesLog(clientesLog);
+    		
+    		clientesFactory.guardarEnJson(archivoJson);
+    		logFactory.guardarEnJson(archivoLogJson);
+    		this.dnis.add(dni);
+    	}
+    		
     	this.tiempoInicio.add((int) (System.currentTimeMillis()/1000));
     }
     
     public void llamaCliente(String box) {
-    	//manda a el tele el box en cuestion y el dni
     	PrintWriter out;
     	if(dnis.size()>=1) {
-    		//aca manda con el primer dni al box en cuestion
     		for(int i=0;i<teles.size();i++) {
     			try {
 					out = new PrintWriter(teles.get(i).getSocket().getOutputStream(), true);
@@ -69,14 +137,20 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     		}		
     		atendidos.add(indexDnis, dnis.get(0));
     		this.tiempoFin.add(indexDnis, (int) (System.currentTimeMillis()/1000));
+    		for(int i=0;i<clientes.size();i++) {
+    			if(clientesLog.get(i).getDni().compareTo(dnis.get(0))==0) {
+    				this.clientes.get(i).ponerAtendido();
+    				System.out.println(this.clientes.get(i).getEstado());
+    				clientesLog.get(i).setTiempoFin();
+    			}	
+    		}
+    		logFactory.guardarEnJson(archivoLogJson);
     		indexDnis++;
     		dnis.remove(0);
     	}
     	else {
     		System.out.println("No hay clientes");
-    	}
-    	
-    	
+    	}  	
     }
     
     public String calculaTiempo() {
@@ -202,7 +276,6 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     	ColasManager.indexBox = indexBox;
     }
     public void agregarDnis(ArrayList<String> dnis_nuevo) {
-    	//System.out.println("entro colas");
     	this.dnis = dnis_nuevo;
     }
     public void agregarBoxes(ArrayList<String> boxes) {
@@ -212,7 +285,17 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     	this.atendidos = atendidos;
     }
     public void agregarTeles(ArrayList<DatosConexion> teles2) {
-    	//System.out.println("entro teles");
     	this.teles = teles2;
     }
+    
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void imprimirClientes() {
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente);
+        }
+    }
+
 }

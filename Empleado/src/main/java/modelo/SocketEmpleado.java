@@ -18,14 +18,20 @@ public class SocketEmpleado implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6196215119466082230L;
-	int puerto = 5555;
-    String ip = "localhost"; // Cambia esto a la dirección IP del servidor
+	private int puerto = 5555;
+	private String ip = "localhost"; // Cambia esto a la dirección IP del servidor
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private BufferedReader in;
 	private PrintWriter out;
 	//private ObjectInputStream ois;
-
+    
+   public SocketEmpleado(String ip, int puerto) {
+		super();
+		this.puerto = puerto;
+		this.ip = ip;
+	}
+   
     public String envio(Object objeto,String mensaje){
     	String resp="";
     	try{
@@ -41,8 +47,8 @@ public class SocketEmpleado implements Serializable {
     	System.out.println("ESTO:"+resp);
         return resp;
     }
-    
-   public void llama(Object objeto,String mensaje){
+
+    public void llama(Object objeto,String mensaje){
 	   try{
 		   this.abrirConexion(ip, puerto);
 		   //System.out.println("objeto EMPLEADO: " + objeto);
@@ -54,11 +60,12 @@ public class SocketEmpleado implements Serializable {
        }finally{
        	cerrarConexion();
        }
-   }
+    }
 
     
     private void abrirConexion(String ip,int puerto) throws IOException{
         this.socket=new Socket(ip,puerto);
+        System.out.println(socket.getPort());
         this.oos=new ObjectOutputStream(socket.getOutputStream());
         this.in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out=new PrintWriter(socket.getOutputStream(),true);
@@ -85,5 +92,22 @@ public class SocketEmpleado implements Serializable {
         System.out.println("datos enviados: objeto:"+objeto+"Mensaje:"+mensaje);
         
         return in.readLine();  
-    }  
+    }
+
+	public int getPuerto() {
+		return puerto;
+	}
+
+	public void setPuerto(int puerto) {
+		this.puerto = puerto;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	} 
+    
 }

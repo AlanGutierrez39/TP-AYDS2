@@ -40,12 +40,14 @@ public class Empleado implements Serializable{
     private transient BufferedReader entrada;
     private transient BufferedWriter salida;
     private transient SocketEmpleado nuevo;
+    private transient SocketEmpleado socket2;
     private String dni;
     private int box;
     private final int MAX_REINTENTOS = 4;
     
     public void iniciar() {
-        nuevo = new SocketEmpleado();
+        nuevo = new SocketEmpleado("localhost", 5555);
+        socket2 = new SocketEmpleado("localhost", 7777);
         ControladorEmpleado controladorEmpleado=new ControladorEmpleado(this);
         controladorEmpleado.ejecutar();
     }
@@ -61,13 +63,49 @@ public class Empleado implements Serializable{
         	JOptionPane.showMessageDialog(null, "No se pudo conectar. Reintentando…");    // registrar la excepción
         }
     }
-    
+    /*public void ingresa(String mensaje, int i){
+    	try{
+    		if(mensaje.equals("nuevo"))
+    			nuevoEmpleado(mensaje);
+    		else
+    			llamaCliente(mensaje);
+        }catch(Exception e){
+        	// maneja la excepción
+			JOptionPane.showMessageDialog(null, "No se pudo conectar. Reintentando…");// registrar la excepción
+            // dormir el thread durante 5 segundos antes de volver a intentarlo
+            try {
+				Thread.sleep(5000);
+				i++;
+				switch (i) {
+				case 0:
+					this.nuevo.setIp("localhost");
+					this.nuevo.setPuerto(7777);
+					this.ingresa(mensaje, i);
+					break;
+				case MAX_REINTENTOS:
+					JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+					this.nuevo.setIp("localhost");
+					this.nuevo.setPuerto(5555);
+					break;
+				default:
+					ingresa(mensaje, i);
+					break;
+				}
+			} catch (InterruptedException e1) {
+				if (i == MAX_REINTENTOS) {
+					JOptionPane.showMessageDialog(null, "No se pudo conectar.");
+				}
+            }
+        }
+    }*/
     public void llamaCliente(String mensaje) {
     	nuevo.llama(this, String.valueOf(box));
+    	this.socket2.llama(this, String.valueOf(box));
     }
     
     public void nuevoEmpleado(String mensaje) {
     	this.setPuesto(Integer.valueOf(nuevo.envio(this, mensaje)));
+    	this.setPuesto(Integer.valueOf(this.socket2.envio(this, mensaje)));
     }
 	public int getPuesto() {
 		return box;

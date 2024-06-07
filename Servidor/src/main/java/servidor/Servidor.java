@@ -21,6 +21,9 @@ import modelo.Administrador;
 import modelo.Empleado;
 import modelo.Televisor;
 import modelo.Totem;
+import patronStateServidor.IState;
+import patronStateServidor.PrimarioState;
+import patronStateServidor.SecundarioState;
 
 /**
  *
@@ -31,11 +34,13 @@ public class Servidor extends Thread implements Serializable{
     private ColasManager manager;
     private PrintWriter out;
     private ServerSocket serverSocket;
+    private IState estado = new SecundarioState(this);
     
     public Servidor() throws Exception{
     	this.manager = ColasManager.getInstancia();
     	this.serverSocket = new ServerSocket(5555);
-    	System.out.println("Servidor TCP iniciado. Esperando conexiones...");
+    	this.estado = new PrimarioState(this);
+    	System.out.println("Servidor TCP iniciado. Esperando conexiones…");
     	/*Thread.sleep(5000);
  		throw new Exception("Exception message");*/
     }
@@ -43,8 +48,26 @@ public class Servidor extends Thread implements Serializable{
     public Servidor(ColasManager manager) throws IOException {
     	this.manager = manager;
     	this.serverSocket = new ServerSocket(5555);
-    	System.out.println("Servidor TCP secundario iniciado. Esperando conexiones...");
+    	this.estado = new PrimarioState(this);
+    	System.out.println("Servidor TCP (ex)secundario iniciado. Esperando conexiones…");
     }
+    
+    /*public Servidor(String ip, int puerto) throws IOException {
+    	this.manager = ColasManager.getInstancia();
+    	this.serverSocket = new ServerSocket(puerto);
+    	switch (puerto) {
+		case 5555:
+	    	System.out.println("Servidor TCP iniciado. Esperando conexiones…");
+			break;
+		case 7777:
+			System.out.println("Servidor TCP secundario iniciado. Esperando conexiones…");
+			break;
+		default:
+			System.out.println("Puerto incorrecto.");
+			break;
+		}
+    	
+    }*/
     //para test
     /*public Servidor(String mensaje) {
     	try {
@@ -101,7 +124,7 @@ public class Servidor extends Thread implements Serializable{
                     System.out.println("documentos: " + manager.getDnis().toString());
                     
                     mandar_int("agregar index dnis",manager.obtener_index_dnis()); //manager.obtener_index_dnis()
-                    mandar_objeto("agregar dnis",manager.obtener_dnis().getLast());
+                    //mandar_objeto("agregar dnis",manager.obtener_dnis().getLast());
                 }else if(obj instanceof Televisor){
                 	System.out.println("entra televisor");
                 	System.out.println("datos: " + datos);
@@ -206,5 +229,12 @@ public class Servidor extends Thread implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-    
+	
+	public IState getEstado() {
+		return estado;
+	}
+
+	public void setEstado(IState estado) {
+		this.estado = estado;
+	}
 }

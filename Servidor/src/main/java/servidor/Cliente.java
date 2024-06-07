@@ -2,6 +2,9 @@ package servidor;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import patronState.IState;
@@ -10,6 +13,9 @@ import patronState.SinAtenderState;
 public class Cliente implements Serializable, IState{
 
 	private static final long serialVersionUID = 4875610979375323141L;
+	
+	@XmlTransient
+	@JsonIgnore
     private IState estado = new SinAtenderState(this);
 	
     @JsonProperty("numero_dni")

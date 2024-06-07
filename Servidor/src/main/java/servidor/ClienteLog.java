@@ -19,6 +19,11 @@ public class ClienteLog implements Serializable {
     	this.setTiempoInicio();
     }
 
+    public ClienteLog(String dni,GregorianCalendar tiempoinicio,GregorianCalendar tiempofin) {
+    	this.dni=dni;
+    	this.tiempoFin=tiempofin;
+    	this.tiempoInicio=tiempoinicio;
+    }
     public ClienteLog() {}
 
     public String getDni() {

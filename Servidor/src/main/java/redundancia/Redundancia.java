@@ -81,7 +81,8 @@ public class Redundancia extends Thread{
                 }else if(mensaje_recibido.equals("nueva instancia")) {
                 	try {
                 		System.out.println("se instancia nuevo servidor");
-						Servidor servidor = new Servidor(this.manager);
+						Servidor servidor = new Servidor(manager);
+						//Servidor servidor = new Servidor("localhost", 7777);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import Registros.ClientesJsonFactory;
-import Registros.ClientesLogJsonFactory;
-import Registros.Prioridad;
-import Registros.PrioridadAfinidad;
-import Registros.PrioridadDefault;
-import Registros.PrioridadEdad;
+import abstractfactory.*;
 import modelo.Llamado;
 import modelo.Monitoreo;
 import modelo.Notificacion;
 import modelo.Registro;
+import strategy.Prioridad;
+import strategy.PrioridadAfinidad;
+import strategy.PrioridadDefault;
+import strategy.PrioridadEdad;
+
 
 public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
 
@@ -34,28 +34,42 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     private static ColasManager instancia;
     
     
-    private static String prioridad="Default";//"afinidad";//"edad";//
+    private String prioridad;
+    private String tipoArchivo;
     private Prioridad prio;
-    private final String archivoJson = "clientes.json";
-    private final String archivoLogJson = "clientes_log.json";
-    private ClientesJsonFactory clientesFactory;
-    private ClientesLogJsonFactory logFactory;
+    IArchivoFactory factory;
+    IArchivoClientes archivoClientes ;
+    IArchivoLogs archivoLogs;
+
     
     
     
     private ColasManager() {
-    	clientesFactory = new ClientesJsonFactory();
-        logFactory = new ClientesLogJsonFactory();
-     
-   
-        clientesFactory.leerDesdeJson(archivoJson);
-        clientes=clientesFactory.getClientes();
+    	ConfigLoader configLoader = new ConfigLoader("config.properties");
+
+        int port = configLoader.getIntProperty("server.port");
+        prioridad= configLoader.getStringProperty("server.prioridad");
+        tipoArchivo = configLoader.getStringProperty("server.tipoarchivo");
+
+
+        if(tipoArchivo.compareToIgnoreCase("json")==0) {
+        	factory = new JsonArchivoFactory();
+        }
+        else if(tipoArchivo.compareToIgnoreCase("xml")==0) {
+        	  factory = new XmlArchivoFactory();
+        }
+        else {
+        	  factory = new TxtArchivoFactory();
+        }
         
-        System.out.println(clientes);
-        logFactory.leerDesdeJson(archivoLogJson);
-        clientesLog=logFactory.getClientesLog();
-        System.out.println(clientesLog);
-        
+        archivoClientes = factory.crearArchivoClientes();
+    	archivoLogs = factory.crearArchivoLogs();
+    	clientesLog=archivoLogs.leerLogs();
+    	clientes=archivoClientes.leerClientes();
+    	System.out.println(clientes);
+    	System.out.println(clientesLog);
+    	
+    	
         if(prioridad.compareToIgnoreCase("afinidad")==0) {
         	prio=new PrioridadAfinidad();
         }
@@ -112,11 +126,8 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     		clientesLog.add(nuevolog);
     		clientes.add(nuevo);
     		
-    		clientesFactory.setClientes(clientes);
-    		logFactory.setClientesLog(clientesLog);
-    		
-    		clientesFactory.guardarEnJson(archivoJson);
-    		logFactory.guardarEnJson(archivoLogJson);
+    		archivoLogs.guardarLogs(clientesLog);
+    		this.archivoClientes.guardarClientes(clientes);
     		this.dnis.add(dni);
     	}
     		
@@ -144,7 +155,7 @@ public class ColasManager implements Registro,Llamado,Notificacion,Monitoreo{
     				clientesLog.get(i).setTiempoFin();
     			}	
     		}
-    		logFactory.guardarEnJson(archivoLogJson);
+    		archivoLogs.guardarLogs(clientesLog);
     		indexDnis++;
     		dnis.remove(0);
     	}

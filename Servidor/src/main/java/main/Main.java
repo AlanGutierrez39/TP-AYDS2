@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.servidor;
+package main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import redundancia.Redundancia;
 import servidor.Servidor;
 
 /**
@@ -20,10 +21,12 @@ import servidor.Servidor;
  * @author ignacio
  */
 public class Main {
-    
+
+
     public static void main(String[] args) throws Exception {
     	System.out.println("BOCABOCABOCA");
     	Servidor servidor = new Servidor();
+    	//Servidor servidor = new Servidor("localhost", 5555);
     	servidor.startServer();
     }
     

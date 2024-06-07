@@ -36,8 +36,8 @@ public class SocketTelevisor implements Serializable{
 		this.controlador=cont;
 	}
 	
-	private void abrirConexion() throws IOException{
-	    this.socket=new Socket("localhost",5555);
+	private void abrirConexion(String ip,int puerto) throws IOException{
+	    this.socket=new Socket(ip, puerto);
 	    this.salida=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 	    this.entrada=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	    this.oos=new ObjectOutputStream(socket.getOutputStream());
@@ -49,7 +49,8 @@ public class SocketTelevisor implements Serializable{
 	    public void envio(Object objeto,String mensaje){
 	        try{
 	        	System.out.println(objeto);
-	        	this.abrirConexion();
+	        	this.abrirConexion("localhost",5555);
+	        	//this.abrirConexion("localhost",7777);
 	        	System.out.println("Conexion establecida");
 	            System.out.println("Enviando datos");
 	            enviarDatos(objeto,mensaje);

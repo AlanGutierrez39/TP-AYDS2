@@ -34,22 +34,37 @@ public class Servidor extends Thread implements Serializable{
     private ColasManager manager;
     private PrintWriter out;
     private ServerSocket serverSocket;
+    private int puerto;
     private IState estado = new SecundarioState(this);
     
-    public Servidor() throws Exception{
+    public Servidor() throws IOException{
     	this.manager = ColasManager.getInstancia();
-    	this.serverSocket = new ServerSocket(5555);
-    	this.estado = new PrimarioState(this);
-    	System.out.println("Servidor TCP iniciado. Esperando conexiones…");
-    	/*Thread.sleep(5000);
- 		throw new Exception("Exception message");*/
+    	try {
+    		this.setPuerto(5555);
+			this.serverSocket = new ServerSocket(this.puerto);
+			this.estado = new PrimarioState(this);
+			System.out.println("Servidor TCP iniciado. Esperando conexiones…");
+		} catch (IOException e) {
+			this.setPuerto(7777);
+			this.serverSocket = new ServerSocket(this.puerto);
+			this.estado = new SecundarioState(this);
+			System.out.println("Servidor TCP secundario iniciado. Esperando conexiones…");
+		}
     }
     
-    public Servidor(ColasManager manager) throws IOException {
+    public Servidor(ColasManager manager) throws IOException{
     	this.manager = manager;
-    	this.serverSocket = new ServerSocket(5555);
-    	this.estado = new PrimarioState(this);
-    	System.out.println("Servidor TCP (ex)secundario iniciado. Esperando conexiones…");
+    	try {
+    		this.setPuerto(5555);
+			this.serverSocket = new ServerSocket(this.puerto);
+			this.estado = new PrimarioState(this);
+			System.out.println("Servidor TCP iniciado. Esperando conexiones…");
+		} catch (IOException e) {
+			this.setPuerto(7777);
+			this.serverSocket = new ServerSocket(this.puerto);
+			this.estado = new SecundarioState(this);
+			System.out.println("Servidor TCP secundario iniciado. Esperando conexiones…");
+		}
     }
     
     /*public Servidor(String ip, int puerto) throws IOException {
@@ -80,10 +95,11 @@ public class Servidor extends Thread implements Serializable{
     }*/
     
     public void startServer() {
+    	System.out.println("Puerto: " + this.getServerSocket().getLocalPort() + "\nServidor: " + this.getEstado());
     	try {
 			while(true) {
 				Socket clientSocket = this.serverSocket.accept();
-				Thread thread = new Thread(new ClientHandler(clientSocket,manager));
+				Thread thread = new Thread(new ClientHandler(clientSocket,manager, "localhost", this.getServerSocket().getLocalPort()));
 				System.out.println(thread);
 				thread.start();
 				/*try {
@@ -103,10 +119,14 @@ public class Servidor extends Thread implements Serializable{
     private static class ClientHandler implements Runnable {
         private Socket clientSocket;
         private ColasManager manager;
+        private String ip;
+        private int puerto;
 
-        public ClientHandler(Socket clientSocket,ColasManager manager) {
+        public ClientHandler(Socket clientSocket,ColasManager manager, String ip, int puerto) {
             this.clientSocket = clientSocket;
             this.manager = manager;
+            this.ip = ip;
+            this.puerto = puerto;
         }
 
         @Override
@@ -123,14 +143,14 @@ public class Servidor extends Thread implements Serializable{
                     manager.newCliente(totem.getDni());
                     System.out.println("documentos: " + manager.getDnis().toString());
                     
-                    mandar_int("agregar index dnis",manager.obtener_index_dnis()); //manager.obtener_index_dnis()
+                    mandar_int("agregar index dnis",manager.obtener_index_dnis(), ip, puerto); //manager.obtener_index_dnis()
                     //mandar_objeto("agregar dnis",manager.obtener_dnis().getLast());
                 }else if(obj instanceof Televisor){
                 	System.out.println("entra televisor");
                 	System.out.println("datos: " + datos);
                     manager.creaTele(datos);
                     //zona de pruebas
-                    mandar_objeto("televisor",manager.obtener_teles());
+                    mandar_objeto("televisor",manager.obtener_teles(), ip, puerto);
                     //mandar_objeto("televisor",manager.obtener_teles().getLast());
                 }else if(obj instanceof Empleado){
                 	System.out.println("entra empleado");
@@ -140,14 +160,14 @@ public class Servidor extends Thread implements Serializable{
                     	manager.newBox(datos);
                     	//boxes.add(indexBox,String.valueOf(indexBox));
             	    	//indexBox++;
-                    	mandar_int("agregar index box",manager.obtener_index_box());
-                    	mandar_objeto("nuevo boxes",manager.obtener_boxes());
+                    	mandar_int("agregar index box",manager.obtener_index_box(), ip, puerto);
+                    	mandar_objeto("nuevo boxes",manager.obtener_boxes(), ip, puerto);
                     }else {
                     	manager.llamaCliente(String.valueOf(empleado.getPuesto()));
                     	//atendidos.add(dnis.get(0));
                 		//dnis.remove(0);
-                    	mandar_objeto("agregar dnis",manager.obtener_dnis());
-                    	mandar_objeto("agregar atendidos",manager.obtener_atendidos());
+                    	mandar_objeto("agregar dnis",manager.obtener_dnis(), ip, puerto);
+                    	mandar_objeto("agregar atendidos",manager.obtener_atendidos(), ip, puerto);
                     }
                 }else if(obj instanceof Administrador){
                 	System.out.println("entra administrador");
@@ -170,9 +190,9 @@ public class Servidor extends Thread implements Serializable{
         }
     }
     
-    public static void mandar_int(String mensaje,int numero_enviar) {
+    public static void mandar_int(String mensaje,int numero_enviar, String ip, int puerto) {
 		try {
-			Socket socket = new Socket("localhost", 5555);
+			Socket socket = new Socket(ip, puerto);
 			//inicializo
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -196,9 +216,9 @@ public class Servidor extends Thread implements Serializable{
 		}
     }
     
-    public static void mandar_objeto(String mensaje,Object objeto) {
+    public static void mandar_objeto(String mensaje,Object objeto, String ip, int puerto) {
 		try {
-			Socket socket = new Socket("localhost", 5555);
+			Socket socket = new Socket(ip, puerto);
 			//inicializo
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 	        PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
@@ -237,4 +257,21 @@ public class Servidor extends Thread implements Serializable{
 	public void setEstado(IState estado) {
 		this.estado = estado;
 	}
+
+	public ServerSocket getServerSocket() {
+		return serverSocket;
+	}
+
+	public void setServerSocket(ServerSocket serverSocket) {
+		this.serverSocket = serverSocket;
+	}
+
+	public int getPuerto() {
+		return puerto;
+	}
+
+	public void setPuerto(int puerto) {
+		this.puerto = puerto;
+	}
+	
 }

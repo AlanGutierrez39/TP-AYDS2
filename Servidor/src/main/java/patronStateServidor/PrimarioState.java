@@ -23,7 +23,12 @@ public class PrimarioState implements IState{
 	public void ponerSecundario() {
 		System.out.println("No corresponde el cambio de estado");
 		//this.servidor.setEstado(new SecundarioState(this.servidor));
+		//this.servidor.setPuerto(7777);
 	}
 
+	@Override
+	public String toString() {
+		return "Primario";
+	}
 
 }

@@ -17,12 +17,18 @@ public class SecundarioState implements IState{
 	@Override
 	public void ponerPrimario() {
 		this.servidor.setEstado(new PrimarioState(this.servidor));
+		this.servidor.setPuerto(5555);
 	}
 
 
 	@Override
 	public void ponerSecundario() {
 		System.out.println("No corresponde el cambio de estado");
+	}
+
+	@Override
+	public String toString() {
+		return "Secundario";
 	}
 
 }
